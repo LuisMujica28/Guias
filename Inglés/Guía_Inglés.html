@@ -901,6 +901,13 @@
             background-image: radial-gradient(#eceff1 1px, transparent 1px);
             background-size: 15px 15px;
             height: 98%;
+            transition: all 0.4s ease;
+        }
+
+        .blog-card.playing-highlight {
+            border-color: #ffd54f !important;
+            box-shadow: 0 0 15px rgba(255, 213, 79, 0.4) !important;
+            background-color: #fffde7 !important;
         }
 
         .blog-header {
@@ -1994,9 +2001,27 @@
                     }
                     if (activeAudio) {
                         activeAudio.pause();
+                        const activeHighlight = document.querySelector('.blog-card.playing-highlight');
+                        if (activeHighlight) {
+                            activeHighlight.classList.remove('playing-highlight');
+                        }
                     }
                     activeAudio = new Audio(url);
                     activeUrl = url;
+                    
+                    activeAudio.addEventListener('play', () => {
+                        const card = document.querySelector('.blog-card');
+                        if (card) card.classList.add('playing-highlight');
+                    });
+                    activeAudio.addEventListener('pause', () => {
+                        const card = document.querySelector('.blog-card');
+                        if (card) card.classList.remove('playing-highlight');
+                    });
+                    activeAudio.addEventListener('ended', () => {
+                        const card = document.querySelector('.blog-card');
+                        if (card) card.classList.remove('playing-highlight');
+                    });
+                    
                     activeAudio.play().catch(e => console.log(e));
                 }
             }
