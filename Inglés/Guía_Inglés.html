@@ -1174,9 +1174,285 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* ================= PREMIUM INTERACTIVE STYLES ================= */
+
+        /* 1. Theme Variables & Classes */
+        body.theme-sepia {
+            background-color: #e5dec9 !important;
+        }
+        body.theme-sepia .page:not(.cover-page) {
+            background-color: #f4edd8 !important;
+            background-image: none !important;
+            color: #4a3b32 !important;
+        }
+        body.theme-sepia .blog-card {
+            background-color: #fbf7ec !important;
+            color: #4a3b32 !important;
+            border-color: #d7ccc8 !important;
+        }
+        body.theme-sepia .ex-header {
+            border-bottom-color: #d7ccc8 !important;
+        }
+
+        body.theme-dark {
+            background-color: #121212 !important;
+        }
+        body.theme-dark .page:not(.cover-page) {
+            background-color: #1e1e1e !important;
+            background-image: none !important;
+            color: #e0e0e0 !important;
+        }
+        body.theme-dark .blog-card {
+            background-color: #2d2d2d !important;
+            color: #e0e0e0 !important;
+            border-color: #424242 !important;
+            background-image: radial-gradient(#37474f 1px, transparent 1px) !important;
+        }
+        body.theme-dark .ex-header {
+            border-bottom-color: #37474f !important;
+        }
+        body.theme-dark .objectives-card {
+            background-color: #263238 !important;
+            border-color: #37474f !important;
+            color: #b0bec5 !important;
+        }
+        body.theme-dark .info-box-future, body.theme-dark .info-box-real-english {
+            background-color: #2d2d2d !important;
+            border-color: #37474f !important;
+            color: #e0e0e0 !important;
+        }
+        body.theme-dark .info-box-header {
+            background-color: #37474f !important;
+            color: #ffffff !important;
+        }
+        body.theme-dark .vertical-banner {
+            opacity: 0.8;
+        }
+
+        /* 2. Floating Control Panel */
+        .floating-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid #263238;
+            border-radius: 30px;
+            padding: 6px 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8pt;
+        }
+        .control-btn {
+            background: white;
+            border: 1px solid #cfd8dc;
+            border-radius: 20px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #37474f;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+        .control-btn:hover {
+            border-color: #263238;
+            background-color: #eceff1;
+        }
+        .control-btn.active {
+            background-color: #263238;
+            color: white;
+            border-color: #263238;
+        }
+
+        /* 3. Answer Autocorrector */
+        .line-input[contenteditable="true"] {
+            outline: none;
+            cursor: text;
+            display: inline-block;
+            min-width: 35px;
+            border-bottom: 2px solid #b0bec5;
+            padding: 0 4px;
+            transition: all 0.3s ease;
+            font-family: 'Caveat', cursive;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #1a237e;
+        }
+        .line-input[contenteditable="true"]:focus {
+            background-color: rgba(33, 150, 243, 0.05);
+            border-bottom-color: #2196f3;
+        }
+        .line-input.correct {
+            background-color: #e8f5e9 !important;
+            border-bottom-color: #4caf50 !important;
+            color: #2e7d32 !important;
+        }
+        .line-input.incorrect {
+            background-color: #ffebee !important;
+            border-bottom-color: #f44336 !important;
+            color: #c62828 !important;
+        }
+
+        /* 4. Vocabulary Tooltips */
+        .vocab-word {
+            border-bottom: 1.5px dashed #bf360c;
+            cursor: help;
+            position: relative;
+            font-weight: 600;
+            color: #bf360c;
+        }
+        .vocab-word::after {
+            content: attr(data-definition);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            background: #263238;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 7.5pt;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 10010;
+        }
+        .vocab-word:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 5. Progress Checklist & Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(207, 216, 220, 0.5);
+            z-index: 10005;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #4caf50, #00d2ff);
+            transition: width 0.3s ease;
+        }
+        .ex-header {
+            cursor: pointer;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+        .ex-header:hover {
+            background-color: rgba(38, 50, 56, 0.04);
+        }
+        .ex-header.checked {
+            opacity: 0.55;
+        }
+        .ex-header.checked .ex-num {
+            background-color: #4caf50 !important;
+            color: white !important;
+            border-color: #4caf50 !important;
+            box-shadow: none !important;
+        }
+        .ex-header.checked .ex-num::before {
+            content: "✓ ";
+            font-weight: bold;
+        }
+
+        /* 6. Image Lightbox Zoom */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 20000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            border: 2px solid #fff;
+        }
+        .lightbox-overlay.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        /* 7. Print Overrides */
+        @media print {
+            .floating-controls, .progress-container, .lightbox-overlay {
+                display: none !important;
+            }
+            .line-input[contenteditable="true"] {
+                border-bottom: 1px solid #263238 !important;
+                background-color: transparent !important;
+                color: transparent !important; /* Hide typed answers on print */
+                min-width: 0 !important;
+            }
+            .vocab-word {
+                border-bottom: none !important;
+                cursor: default !important;
+                color: inherit !important;
+            }
+            .ex-header {
+                opacity: 1 !important;
+                background-color: transparent !important;
+            }
+            .ex-header.checked .ex-num::before {
+                content: ""; /* remove checkmark on print */
+            }
+            body.theme-sepia, body.theme-dark {
+                background-color: transparent !important;
+            }
+            body.theme-sepia .page, body.theme-dark .page {
+                background-color: white !important;
+                color: #263238 !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Floating Theme Controls -->
+    <div class="floating-controls">
+        <span style="margin-right: 4px;">🎨 Tema:</span>
+        <button class="control-btn active" id="btnThemeDefault" onclick="setTheme('default')">Normal</button>
+        <button class="control-btn" id="btnThemeSepia" onclick="setTheme('sepia')">Sepia</button>
+        <button class="control-btn" id="btnThemeDark" onclick="setTheme('dark')">Oscuro</button>
+    </div>
+
+    <!-- Image Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Zoomed Image">
+    </div>
 
     <!-- ================= PORTADA ================= -->
     <div class="page cover-page">
@@ -1403,11 +1679,11 @@
                         <div class="blog-date">Posted February 15</div>
                     </div>
                     <div class="blog-text-content">
-                        <p><strong>What are you going to do</strong> after you graduate from high school? If you don't have a clue or feel totally confused, don't worry! Today's blog is about the skills you and I are going to need when it's our turn to look for work.</p>
-                        <p>Technology is changing everything, right? It's taking over some jobs but creating others. Young people with I.T. skills are probably going to find jobs easily. They're going to be in charge of all the technology of the future. My friend Blanca wants to have this type of job. She wants to be a programmer or a web designer, but that's not for me. I'm not going to look for a job in I.T. I want to do something different.</p>
+                        <p><strong>What are you going to do</strong> after you graduate from high school? If you don't have a <span class="vocab-word" data-definition="Pista / Idea">clue</span> or feel totally confused, don't worry! Today's blog is about the skills you and I are going to need when it's our turn to look for work.</p>
+                        <p>Technology is changing everything, right? It's <span class="vocab-word" data-definition="Tomando el control / Reemplazando">taking over</span> some jobs but creating others. Young people with I.T. skills are probably going to find jobs easily. They're going to be <span class="vocab-word" data-definition="A cargo de / Responsables de">in charge of</span> all the technology of the future. My friend Blanca wants to have this type of job. She wants to be a programmer or a web designer, but <span class="vocab-word" data-definition="No es lo mío / No es para mí">that's not for me</span>. I'm not going to look for a job in I.T. I want to do something different.</p>
                         <p>Thinking skills, like critical thinking and problem solving, are already really important for a lot of jobs these days. They'll probably be even more important in the future. Doctors, lawyers, and business people use them a lot. My friend Ashley wants to be a lawyer. She's going to study law in college.</p>
                         <p>For me, the most important skills are going to be communication skills, things like writing and public speaking. You need these skills for a lot of careers, especially if you want to be a teacher, a manager, or to work in the media.</p>
-                        <p>And that's what I want to do. I'm going to be a journalist. I love writing about all kinds of different things. To be honest, that's why I like writing my blog. That's it for today. Hope this was useful. See you next time!</p>
+                        <p>And that's what I want to do. I'm going to be a journalist. I love writing about all kinds of different things. <span class="vocab-word" data-definition="Para ser sincero / Honestamente">To be honest</span>, that's why I like writing my blog. That's it for today. Hope this was useful. See you next time!</p>
                     </div>
                 </div>
 
@@ -1448,7 +1724,7 @@
                             </a>
                         </div>
                         <div style="font-size: 8pt; color: #37474f; padding-left: 12px; line-height: 1.3;">
-                            Rafael <strong>knows</strong> / <strong>doesn't know</strong> the job he wants to do in the future.
+                            Rafael <span class="clickable-choice" data-correct="true">knows</span> / <span class="clickable-choice">doesn't know</span> the job he wants to do in the future.
                         </div>
                     </div>
                 </div>
@@ -1498,10 +1774,10 @@
                             <span>1.</span> Elena is planning to study Graphic Design in college and develop her <span class="hw-cursive">creative</span> skills.
                         </div>
                         <div class="numbered-list-item">
-                            <span>2.</span> Marcus is going to need <span class="line-input" style="width: 140px;"></span> skills for his career as a journalist.
+                            <span>2.</span> Marcus is going to need <span class="line-input" data-answer="communication" style="width: 140px;"></span> skills for his career as a journalist.
                         </div>
                         <div class="numbered-list-item">
-                            <span>3.</span> Sofia is going to work on her <span class="line-input" style="width: 120px;"></span> skills so she can become a web developer.
+                            <span>3.</span> Sofia is going to work on her <span class="line-input" data-answer="I.T.|IT|technology" style="width: 120px;"></span> skills so she can become a web developer.
                         </div>
                     </div>
                 </div>
@@ -1846,22 +2122,22 @@
                         </div>
                         <div class="numbered-list" style="gap: 8px; padding-left: 6px;">
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
-                                <span>1.</span> Luke <span class="line-input" style="width: 110px;"></span> do the dishes on Monday.
+                                <span>1.</span> Luke <span class="line-input" data-answer="has to" style="width: 110px;"></span> do the dishes on Monday.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
-                                <span>2.</span> Mom <span class="line-input" style="width: 110px;"></span> feed the dog.
+                                <span>2.</span> Mom <span class="line-input" data-answer="has to" style="width: 110px;"></span> feed the dog.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
-                                <span>3.</span> Luke and Kelly <span class="line-input" style="width: 120px;"></span> take out the trash.
+                                <span>3.</span> Luke and Kelly <span class="line-input" data-answer="don't have to|dont have to" style="width: 120px;"></span> take out the trash.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
-                                <span>4.</span> Mom and Dad <span class="line-input" style="width: 120px;"></span> take out the trash.
+                                <span>4.</span> Mom and Dad <span class="line-input" data-answer="have to" style="width: 120px;"></span> take out the trash.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt; line-height: 1.3;">
-                                <span>5.</span> Does Kelly have to clean the bedrooms on Friday? <span class="line-input" style="width: 50px;"></span>, she <span class="line-input" style="width: 50px;"></span>.
+                                <span>5.</span> Does Kelly have to clean the bedrooms on Friday? <span class="line-input" data-answer="No" style="width: 50px;"></span>, she <span class="line-input" data-answer="doesn't|doesnt" style="width: 50px;"></span>.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt; line-height: 1.3;">
-                                <span>6.</span> Do Mom, Dad, Kelly, and Luke have to do the dishes? <span class="line-input" style="width: 50px;"></span>, they <span class="line-input" style="width: 50px;"></span>.
+                                <span>6.</span> Do Mom, Dad, Kelly, and Luke have to do the dishes? <span class="line-input" data-answer="Yes" style="width: 50px;"></span>, they <span class="line-input" data-answer="do" style="width: 50px;"></span>.
                             </div>
                         </div>
                     </div>
@@ -1887,23 +2163,23 @@
                         <div class="numbered-list" style="gap: 12px; padding-left: 6px;">
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
                                 <span>1.</span> "Don't forget your homework."<br>
-                                The students <span class="line-input" style="width: 110px;"></span> forget their homework.
+                                The students <span class="line-input" data-answer="mustn't|mustnt" style="width: 110px;"></span> forget their homework.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
                                 <span>2.</span> "Remember to take your umbrella."<br>
-                                You <span class="line-input" style="width: 110px;"></span> remember to bring your umbrella.
+                                You <span class="line-input" data-answer="must" style="width: 110px;"></span> remember to bring your umbrella.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
                                 <span>3.</span> "Don't eat food on the bus."<br>
-                                You <span class="line-input" style="width: 110px;"></span> eat food on the bus.
+                                You <span class="line-input" data-answer="mustn't|mustnt" style="width: 110px;"></span> eat food on the bus.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
                                 <span>4.</span> "Tom, no excuses. Clean your room tomorrow!"<br>
-                                Tom <span class="line-input" style="width: 110px;"></span> clean his room tomorrow.
+                                Tom <span class="line-input" data-answer="must" style="width: 110px;"></span> clean his room tomorrow.
                             </div>
                             <div class="numbered-list-item" style="font-size: 7.5pt;">
                                 <span>5.</span> "It's very important that we wash our hands before we eat."<br>
-                                We <span class="line-input" style="width: 110px;"></span> wash our hands before we eat.
+                                We <span class="line-input" data-answer="must" style="width: 110px;"></span> wash our hands before we eat.
                             </div>
                         </div>
                     </div>
@@ -1996,6 +2272,8 @@
         <script>
             let activeAudio = null;
             let activeUrl = null;
+
+            // 1. Inline Audio Player
             function playAudioInline(event, url) {
                 if (typeof window !== 'undefined' && window.location && (window.location.protocol.startsWith('http') || window.location.protocol === 'file:')) {
                     event.preventDefault(); // Prevent opening new tab
@@ -2063,6 +2341,159 @@
                     activeAudio.play().catch(e => console.log(e));
                 }
             }
+
+            // 2. Theme Setting Logic
+            function setTheme(theme) {
+                document.body.classList.remove('theme-sepia', 'theme-dark');
+                document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+                
+                if (theme === 'sepia') {
+                    document.body.classList.add('theme-sepia');
+                    document.getElementById('btnThemeSepia').classList.add('active');
+                } else if (theme === 'dark') {
+                    document.body.classList.add('theme-dark');
+                    document.getElementById('btnThemeDark').classList.add('active');
+                } else {
+                    document.getElementById('btnThemeDefault').classList.add('active');
+                }
+                localStorage.setItem('study-guide-theme', theme);
+            }
+
+            // 3. Image Lightbox
+            function openLightbox(src) {
+                const overlay = document.getElementById('lightboxOverlay');
+                const img = document.getElementById('lightboxImg');
+                img.src = src;
+                overlay.classList.add('active');
+            }
+            function closeLightbox() {
+                document.getElementById('lightboxOverlay').classList.remove('active');
+            }
+
+            // Page Initialization on DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', () => {
+                // Restore Theme Preference
+                const savedTheme = localStorage.getItem('study-guide-theme');
+                if (savedTheme) setTheme(savedTheme);
+
+                // Setup Lightbox for content images
+                const contentImages = document.querySelectorAll('.page img:not(.cover-image)');
+                contentImages.forEach(img => {
+                    img.style.cursor = 'zoom-in';
+                    img.addEventListener('click', () => openLightbox(img.src));
+                });
+                
+                // Allow Esc key to close lightbox
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeLightbox();
+                });
+
+                // Setup Clickable Choices (Exercise 2)
+                const choices = document.querySelectorAll('.clickable-choice');
+                choices.forEach((choice, idx) => {
+                    const choiceKey = `choice-${idx}`;
+                    
+                    // Restore saved selection
+                    const savedState = localStorage.getItem(choiceKey);
+                    if (savedState) {
+                        choice.classList.add(savedState);
+                    }
+
+                    choice.addEventListener('click', () => {
+                        const parent = choice.parentElement;
+                        const siblings = parent.querySelectorAll('.clickable-choice');
+                        
+                        siblings.forEach((sib) => {
+                            sib.classList.remove('selected-correct', 'selected-incorrect');
+                            localStorage.removeItem(`choice-${Array.from(choices).indexOf(sib)}`);
+                        });
+
+                        const isCorrect = choice.getAttribute('data-correct') === 'true';
+                        const className = isCorrect ? 'selected-correct' : 'selected-incorrect';
+                        choice.classList.add(className);
+                        localStorage.setItem(choiceKey, className);
+                    });
+                });
+
+                // Setup Line Inputs (contenteditable and verification)
+                const lineInputs = document.querySelectorAll('.line-input');
+                lineInputs.forEach((input, idx) => {
+                    input.setAttribute('contenteditable', 'true');
+                    const inputKey = `input-val-${idx}`;
+
+                    // Restore saved value
+                    const savedVal = localStorage.getItem(inputKey);
+                    if (savedVal !== null) {
+                        input.innerText = savedVal;
+                        validateInput(input);
+                    }
+
+                    // Prevent Enter key from creating new lines
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            input.blur();
+                        }
+                    });
+
+                    // Validate on blur or input changes
+                    input.addEventListener('blur', () => {
+                        const val = input.innerText.trim();
+                        localStorage.setItem(inputKey, val);
+                        validateInput(input);
+                    });
+                });
+
+                function validateInput(input) {
+                    const val = input.innerText.trim().toLowerCase();
+                    const correctAns = input.getAttribute('data-answer');
+                    if (!correctAns) return; // Open-ended line input
+                    
+                    const options = correctAns.toLowerCase().split('|');
+                    if (options.includes(val)) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else if (val === '') {
+                        input.classList.remove('correct', 'incorrect');
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+                }
+
+                // Setup Checklist and Progress Bar
+                const headers = document.querySelectorAll('.ex-header');
+                const progressBar = document.getElementById('progressBar');
+
+                function updateProgress() {
+                    const total = headers.length;
+                    if (total === 0) return;
+                    const checkedCount = document.querySelectorAll('.ex-header.checked').length;
+                    const percent = Math.round((checkedCount / total) * 100);
+                    progressBar.style.width = `${percent}%`;
+                }
+
+                headers.forEach((header, idx) => {
+                    const headerKey = `header-checked-${idx}`;
+                    
+                    // Restore checked state
+                    if (localStorage.getItem(headerKey) === 'true') {
+                        header.classList.add('checked');
+                    }
+
+                    header.addEventListener('click', (e) => {
+                        if (e.target.closest('a') || e.target.closest('.ex-audio-icon') || e.target.closest('img')) {
+                            return;
+                        }
+                        header.classList.toggle('checked');
+                        localStorage.setItem(headerKey, header.classList.contains('checked'));
+                        updateProgress();
+                    });
+                });
+
+                // Run initial progress calculation
+                updateProgress();
+            });
         </script>
     </body>
 </html>
