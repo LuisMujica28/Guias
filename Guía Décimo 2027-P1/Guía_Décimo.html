@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas 10° - Unidad 1: Ángulos y su Medida</title>
+    <!-- Soporte para ecuaciones en LaTeX con MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Google Fonts for premium design -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. General Document Setup (Letter size print rules) --- */
+        @page {
+            size: 22cm 28cm;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #faf9f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color: #263238;
+        }
+
+        /* Physical Page Container */
+        .page {
+            width: 22cm;
+            height: 28cm;
+            background: white;
+            padding: 0.8cm 1.4cm 0.6cm 1.4cm;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+
+        .page:not(.cover-page)::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid transparent;
+            background:
+                linear-gradient(to right, #cfd8dc 2.5px, transparent 2.5px) 0 0,
+                linear-gradient(to bottom, #cfd8dc 2.5px, transparent 2.5px) 0 0,
+                linear-gradient(to left, #cfd8dc 2.5px, transparent 2.5px) 100% 0,
+                linear-gradient(to bottom, #cfd8dc 2.5px, transparent 2.5px) 100% 0,
+                linear-gradient(to right, #cfd8dc 2.5px, transparent 2.5px) 0 100%,
+                linear-gradient(to top, #cfd8dc 2.5px, transparent 2.5px) 0 100%,
+                linear-gradient(to left, #cfd8dc 2.5px, transparent 2.5px) 100% 100%,
+                linear-gradient(to top, #cfd8dc 2.5px, transparent 2.5px) 100% 100%;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* --- 2. Header Banner --- */
+        .header-banner {
+            position: relative;
+            height: 4.0cm;
+            margin-top: -0.8cm;
+            margin-left: -1.4cm;
+            margin-right: -1.4cm;
+            margin-bottom: 0.2cm;
+            border-radius: 0;
+            overflow: hidden;
+            background: url('math_header_banner.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Overlay to make white text readable */
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 27, 42, 0.85) 0%, rgba(27, 38, 59, 0.6) 60%, rgba(65, 90, 119, 0.3) 100%);
+            z-index: 1;
+        }
+
+        /* Unit Badge */
+        .unit-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32pt;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-bottom-right-radius: 15px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Unit Title */
+        .unit-title-container {
+            z-index: 2;
+            margin-top: 1.3cm;
+            margin-left: 1.4cm;
+        }
+
+        .unit-title {
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 24pt;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin: 0;
+        }
+
+        /* Objectives banner */
+        .objectives-bar {
+            z-index: 2;
+            background-color: #e53935;
+            color: white;
+            padding: 5px 1.4cm;
+            font-family: 'Inter', sans-serif;
+            font-size: 8.5pt;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.25);
+            margin-top: auto;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .objective-bullet {
+            font-size: 7pt;
+            color: #ffcdd2;
+        }
+
+        /* --- 3. Section Headers --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0 3px 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 3px;
+        }
+
+        .section-number {
+            background-color: #d81b60;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 13pt;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 11pt;
+            color: #263238;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 9pt;
+            color: #78909c;
+            font-weight: 500;
+            text-transform: none;
+        }
+
+        .exercise-instruction {
+            font-size: 8.5pt;
+            margin: 3px 0 5px 0;
+            line-height: 1.35;
+            color: #37474f;
+        }
+
+        .exercise-letter {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            color: #d81b60;
+            font-size: 9.5pt;
+            margin-right: 4px;
+        }
+
+        .tag-stage {
+            font-size: 7.5pt;
+            font-weight: bold;
+            color: #d81b60;
+            background-color: #fce4ec;
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        /* --- 4. Section 1: SNAPSHOT --- */
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .matching-columns {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .matching-item {
+            font-size: 8pt;
+            color: #263238;
+            line-height: 1.25;
+            min-height: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .matching-item span {
+            font-weight: bold;
+            margin-right: 4px;
+            color: #37474f;
+        }
+
+        .snapshot-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border: 1.5px solid #e0e0e0;
+            height: 105px;
+        }
+
+        .snapshot-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vocab-pill-box {
+            background-color: #f1f8e9;
+            border: 1.5px solid #c5e1a5;
+            border-radius: 8px;
+            padding: 3px 8px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 3px 0;
+        }
+
+        .vocab-pill {
+            background-color: #dcedc8;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #33691e;
+            border: 1px solid #c5e1a5;
+        }
+
+        .notebook-lined-box {
+            background: #fff;
+            background-image: linear-gradient(#e1f5fe 1px, transparent 1px);
+            background-size: 100% 20px;
+            line-height: 20px;
+            padding: 4px 10px;
+            border-left: 3px solid #ff8a80;
+            border-radius: 4px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.04);
+            min-height: 35px;
+            margin: 3px 0;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .handwritten-text {
+            color: #1a237e;
+            font-family: 'Caveat', cursive;
+            font-size: 12pt;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        /* --- 5. Section 2: CONVERSATION (Guion) --- */
+        .conversation-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 1px;
+        }
+
+        .guion-meta {
+            background-color: #eceff1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 8pt;
+            line-height: 1.3;
+            color: #37474f;
+            margin-bottom: 2px;
+            border-left: 3.5px solid #78909c;
+        }
+
+        .guion-dialogue-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .dialogue-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .speaker-badge {
+            width: 65px;
+            text-align: center;
+            flex-shrink: 0;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 7.5pt;
+            font-weight: bold;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            margin-top: 2px;
+        }
+
+        .speaker-mateo {
+            background-color: #ef5350;
+        }
+
+        .speaker-sofia {
+            background-color: #26a69a;
+        }
+
+        .speech-bubble {
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 8pt;
+            line-height: 1.25;
+            max-width: 88%;
+            font-weight: 500;
+        }
+
+        .acotacion {
+            font-style: italic;
+            color: #546e7a;
+            font-weight: 400;
+        }
+
+        .bubble-mateo {
+            background-color: #ffebee;
+            color: #b71c1c;
+            border: 1px solid #ffcdd2;
+            border-top-left-radius: 2px;
+        }
+
+        .bubble-sofia {
+            background-color: #e0f2f1;
+            color: #004d40;
+            border: 1px solid #b2dfdb;
+            border-top-left-radius: 2px;
+        }
+
+        .question-box {
+            background-color: #fafafa;
+            border: 1px solid #eceff1;
+            border-radius: 6px;
+            padding: 5px 10px;
+            margin-top: 4px;
+        }
+
+        .question-item {
+            font-size: 8pt;
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+
+        .question-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .write-line {
+            border-bottom: 1px dashed #b0bec5;
+            display: inline-block;
+            width: 80%;
+            height: 12px;
+            vertical-align: bottom;
+        }
+
+        /* --- 6. Section 3: MATH FOCUS (Mapa Conceptual) --- */
+        .concept-map-container {
+            background-color: #fbe9e7;
+            border: 2px solid #ffab91;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin: 6px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .map-root {
+            background: linear-gradient(135deg, #d84315, #bf360c);
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 9.5pt;
+            padding: 6px 14px;
+            border-radius: 6px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .map-link {
+            font-family: 'Caveat', cursive;
+            font-size: 11pt;
+            color: #d84315;
+            font-weight: bold;
+            margin: 2px 0;
+            position: relative;
+        }
+
+        .map-link::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -4px;
+            bottom: -4px;
+            border-left: 1.5px dashed #ff8a65;
+            z-index: 1;
+        }
+
+        .map-branches {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            width: 100%;
+            margin-top: 2px;
+        }
+
+        .map-node {
+            background-color: white;
+            border: 1.5px solid #ff8a65;
+            border-radius: 6px;
+            padding: 4px;
+            text-align: center;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .node-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #d84315;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .node-desc {
+            font-size: 6.5pt;
+            line-height: 1.2;
+            color: #37474f;
+        }
+
+        /* SVG Angles Display */
+        .angles-visualization {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            margin: 4px 0 8px 0;
+        }
+
+        .angle-visual-card {
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 4px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .angle-label {
+            font-size: 7.5pt;
+            font-weight: 700;
+            margin-top: 3px;
+            color: #263238;
+        }
+
+        /* --- 7. Section 4: SYSTEM FOCUS (Cuadro Comparativo) --- */
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin: 4px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #cfd8dc;
+        }
+
+        .comparative-table th {
+            background-color: #1a237e;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            padding: 6px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .comparative-table td {
+            padding: 6px;
+            border-bottom: 1px solid #eceff1;
+            line-height: 1.3;
+        }
+
+        .comparative-table tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .criterio-col {
+            font-weight: 700;
+            color: #1a237e;
+            width: 20%;
+        }
+
+        .col-50 {
+            width: 40%;
+        }
+
+        .conversion-flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 8px 0 4px 0;
+            background-color: #fff9c4;
+            border: 1.5px solid #fff59d;
+            border-radius: 6px;
+            padding: 6px 12px;
+        }
+
+        .flow-unit {
+            background-color: #fff;
+            border: 2px solid #fbc02d;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #f57f17;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .flow-arrow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .flow-arrow-label {
+            font-size: 7.5pt;
+            font-weight: bold;
+            color: #d84315;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .flow-arrow-label.div-label {
+            color: #0277bd;
+            margin-top: 2px;
+            margin-bottom: 0;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            color: #ff8a65;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .flow-arrow.rev {
+            color: #4fc3f7;
+        }
+
+        /* --- 8. Section 5: PRACTICAL WORKSHOP --- */
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .workshop-exercises {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .exercise-card {
+            background-color: #fff;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 8pt;
+            line-height: 1.35;
+        }
+
+        .exercise-title {
+            font-weight: 700;
+            color: #263238;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .math-input-box {
+            border: 1px solid #b0bec5;
+            border-radius: 4px;
+            background-color: #fafafa;
+            height: 32px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-family: monospace;
+            color: #37474f;
+        }
+
+        /* --- 9. Footer --- */
+        .footer-container {
+            position: absolute;
+            bottom: 0.6cm;
+            left: 1.4cm;
+            right: 1.4cm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1.5px solid #eceff1;
+            padding-top: 4px;
+        }
+
+        .footer-school {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 7.5pt;
+            color: #78909c;
+        }
+
+        .footer-page-num {
+            position: absolute;
+            right: -1.4cm;
+            background-color: #263238;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 10pt;
+            padding: 4px 10px 4px 12px;
+            border-radius: 4px 0 0 4px;
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Print Media Adjustments */
+        @media print {
+            body {
+                background-color: transparent;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                page-break-after: always;
+            }
+            .page::before {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PHYSICAL PAGE 4 ================= -->
+    <div class="page" id="page1">
+        
+        <!-- Header Banner -->
+        <div class="header-banner">
+            <div class="banner-overlay"></div>
+            <!-- Unit badge -->
+            <div class="unit-badge">1</div>
+            <!-- Title -->
+            <div class="unit-title-container">
+                <h1 class="unit-title">Ángulos y su Medida</h1>
+            </div>
+            <!-- Objectives -->
+            <div class="objectives-bar">
+                <div class="objective-item">
+                    <span class="objective-bullet">▶</span>
+                    <span>Reconocer los elementos del ángulo y clasificarlos según su amplitud física.</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-bullet">▶</span>
+                    <span>Convertir medidas de ángulos del sistema de grados decimales al sistema sexagesimal ($^\circ$, $'$, $''$).</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-bullet">▶</span>
+                    <span>Aplicar deducción lógica y argumentación para justificar equivalencias y construcciones geométricas.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: SNAPSHOT -->
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">SNAPSHOT <span class="section-subtitle">Geometría y entorno urbano</span></h2>
+        </div>
+
+        <div class="exercise-instruction">
+            <span class="exercise-letter">A</span> <span class="tag-stage">Deducción</span> Relaciona los términos con su respectiva definición matemática escribiendo la letra correcta. Luego responde.
+        </div>
+
+        <div class="snapshot-grid">
+            <!-- Left Side: Matching columns -->
+            <div class="matching-columns">
+                <div class="matching-item"><span>1.</span> Vértice (____)</div>
+                <div class="matching-item" style="font-size: 7.5pt; color: #546e7a; margin-bottom: 2px;">
+                    a. Región del plano comprendida entre dos semirrectas que parten de un mismo origen.
+                </div>
+                
+                <div class="matching-item"><span>2.</span> Amplitud (____)</div>
+                <div class="matching-item" style="font-size: 7.5pt; color: #546e7a; margin-bottom: 2px;">
+                    b. Punto de origen común donde se intersecan las dos semirrectas.
+                </div>
+                
+                <div class="matching-item"><span>3.</span> Ángulo (____)</div>
+                <div class="matching-item" style="font-size: 7.5pt; color: #546e7a; margin-bottom: 2px;">
+                    c. Cada una de las dos semirrectas que limitan el ángulo.
+                </div>
+
+                <div class="matching-item"><span>4.</span> Lado (____)</div>
+                <div class="matching-item" style="font-size: 7.5pt; color: #546e7a;">
+                    d. La magnitud de la abertura o rotación de un ángulo, medida comúnmente en grados.
+                </div>
+            </div>
+
+            <!-- Right Side: IA Street Image -->
+            <div class="snapshot-card">
+                <img src="city_intersection_angles.png" alt="Calles intersecadas y ángulos geométricos">
+            </div>
+        </div>
+
+        <div class="exercise-instruction">
+            <span class="exercise-letter">B</span> <strong>PAIR WORK</strong> <span class="tag-stage">Modelado</span> Observa el mapa urbano de la imagen y describe ejemplos de ángulos usando el vocabulario de abajo.
+        </div>
+
+        <!-- Vocab Pills -->
+        <div class="vocab-pill-box">
+            <div class="vocab-pill">Cruce perpendicular</div>
+            <div class="vocab-pill">Ángulo agudo</div>
+            <div class="vocab-pill">Ángulo obtuso</div>
+            <div class="vocab-pill">Vías paralelas</div>
+            <div class="vocab-pill">Giro completo</div>
+        </div>
+
+        <!-- Lined Notebook card with handwriting -->
+        <div class="notebook-lined-box">
+            <p class="handwritten-text">
+                Sofía: "Las calles de la intersección peatonal forman ángulos rectos (90°)."<br>
+                Mateo: "La rampa de acceso peatonal lateral tiene un ángulo agudo respecto al suelo."
+            </p>
+        </div>
+
+        <!-- SECTION 2: CONVERSATION (Guion) -->
+        <div class="section-header" style="margin-top: 6px;">
+            <div class="section-number">2</div>
+            <h2 class="section-title">CONVERSATION <span class="section-subtitle">El misterio de los 360 grados</span></h2>
+        </div>
+
+        <div class="exercise-instruction">
+            <span class="exercise-letter">A</span> <span class="tag-stage">Investigación</span> Analiza los elementos de la siguiente tipología de texto dramático y léelo junto a un compañero.
+        </div>
+
+        <div class="conversation-container">
+            <!-- Guion Metadata -->
+            <div class="guion-meta">
+                <strong>TIPOLOGÍA TEXTUAL: GUION (Narrativa-Instructiva)</strong><br>
+                <strong>Reparto:</strong> MATEO (15 años, curioso y pragmático) | SOFÍA (15 años, analítica e historiadora).<br>
+                <strong>Escena:</strong> <em>Un salón de clases por la tarde. Mateo observa un transportador circular con frustración mientras Sofía traza figuras en su cuaderno.</em>
+            </div>
+
+            <!-- Dialogue Flow -->
+            <div class="guion-dialogue-flow">
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-mateo">MATEO</div>
+                    <div class="speech-bubble bubble-mateo">
+                        <span class="acotacion">(Suspirando y golpeando suavemente el transportador en la mesa)</span> Sofía, ¿por qué los matemáticos decidieron que un giro completo tuviera que ser exactamente 360 grados? ¿No habría sido más fácil usar base 100 o 1000?
+                    </div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-sofia">SOFÍA</div>
+                    <div class="speech-bubble bubble-sofia">
+                        <span class="acotacion">(Dejando el compás de lado, sonriendo)</span> ¡Culpa a los antiguos astrónomos de Babilonia! Ellos no contaban en base 10 como nosotros, sino en base 60. Es el sistema sexagesimal.
+                    </div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-mateo">MATEO</div>
+                    <div class="speech-bubble bubble-mateo">
+                        <span class="acotacion">(Con el ceño fruncido)</span> ¿Base 60? ¡Eso suena sumamente complicado! ¿Qué tiene de especial ese número?
+                    </div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-sofia">SOFÍA</div>
+                    <div class="speech-bubble bubble-sofia">
+                        <span class="acotacion">(Dibujando un círculo dividido en 6 partes)</span> El 60 es maravilloso porque se puede dividir de manera exacta por muchísimos números: 2, 3, 4, 5, 6, 10, 12, 15, 20 y 30. ¡Perfecto para fraccionar sin decimales! Además, para ellos el Sol tardaba unos 360 días en dar una vuelta completa al año celeste. Así, cada día el Sol avanzaba exactamente "un paso" o *grado* en el cielo.
+                    </div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-mateo">MATEO</div>
+                    <div class="speech-bubble bubble-mateo">
+                        <span class="acotacion">(Sorprendido)</span> ¡Guau! O sea que un grado ($1^\circ$) es, en su origen, el paso diario del Sol en el firmamento. ¿Y de dónde salen los minutos y segundos?
+                    </div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-sofia">SOFÍA</div>
+                    <div class="speech-bubble bubble-sofia">
+                        <span class="acotacion">(Asintiendo entusiasta)</span> Como un grado era muy grande para mediciones precisas, dividieron ese paso en 60 partes más pequeñas: las *partes menudas* o minutos ($'$). Y luego a cada minuto lo volvieron a dividir por 60 en *segundas partes menudas* o segundos ($''$).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Comprehension Questions -->
+            <div class="question-box">
+                <div class="question-item">
+                    <strong>1.</strong> <span class="tag-stage">Deducción</span> ¿Cuál es el origen físico e histórico de la unidad del grado ($1^\circ$)? <span class="write-line"></span>
+                </div>
+                <div class="question-item">
+                    <strong>2.</strong> <span class="tag-stage">Argumentación</span> Justifica por qué el número 60 es matemáticamente más versátil que el 100 como base de división. <span class="write-line"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 4 -->
+        <div class="footer-container">
+            <span class="footer-school"></span>
+            <div class="footer-page-num">4</div>
+        </div>
+
+    </div>
+
+    <!-- ================= PHYSICAL PAGE 5 ================= -->
+    <div class="page" id="page2">
+        
+        <!-- SECTION 3: MATH FOCUS (Mapa Conceptual) -->
+        <div class="section-header" style="margin-top: -0.2cm;">
+            <div class="section-number">3</div>
+            <h2 class="section-title">MATH FOCUS <span class="section-subtitle">Clasificación de los Ángulos</span></h2>
+        </div>
+
+        <div class="exercise-instruction">
+            <span class="exercise-letter">A</span> <span class="tag-stage">Análisis</span> Analiza las jerarquías de la siguiente tipología de organizador gráfico expositivo.
+        </div>
+
+        <!-- Mapa Conceptual -->
+        <div class="concept-map-container">
+            <div class="map-root">ÁNGULOS SEGÚN SU MEDIDA</div>
+            <div class="map-link">se clasifican de acuerdo a su amplitud en</div>
+            <div class="map-branches">
+                
+                <div class="map-node">
+                    <span class="node-title">Nulo</span>
+                    <span class="node-desc">$\alpha = 0^\circ$<br>Sin rotación en sus lados.</span>
+                </div>
+                
+                <div class="map-node">
+                    <span class="node-title">Agudo</span>
+                    <span class="node-desc">$0^\circ < \alpha < 90^\circ$<br>Menor que un recto.</span>
+                </div>
+                
+                <div class="map-node" style="border-color: #d81b60;">
+                    <span class="node-title" style="color: #d81b60;">Recto</span>
+                    <span class="node-desc">$\alpha = 90^\circ$<br>Lados perpendiculares.</span>
+                </div>
+                
+                <div class="map-node">
+                    <span class="node-title">Obtuso</span>
+                    <span class="node-desc">$90^\circ < \alpha < 180^\circ$<br>Mayor que un recto.</span>
+                </div>
+                
+                <div class="map-node">
+                    <span class="node-title">Llano</span>
+                    <span class="node-desc">$\alpha = 180^\circ$<br>Media vuelta perfecta.</span>
+                </div>
+                
+                <div class="map-node">
+                    <span class="node-title">Completo</span>
+                    <span class="node-desc">$\alpha = 360^\circ$<br>Vuelta o giro entero.</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Angles Drawing Display with SVG -->
+        <div class="angles-visualization">
+            <div class="angle-visual-card">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#b0bec5" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#d84315" stroke-dasharray="2" stroke-width="2" />
+                    <circle cx="10" cy="40" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label">$\hat{u} = 0^\circ$</div>
+            </div>
+
+            <div class="angle-visual-card">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#b0bec5" stroke-width="2.5" />
+                    <line x1="10" y1="40" x2="35" y2="15" stroke="#d84315" stroke-width="2.5" />
+                    <path d="M 22 40 A 12 12 0 0 0 20 30" fill="none" stroke="#e53935" stroke-width="1.5" />
+                    <circle cx="10" cy="40" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label">$\hat{d} < 90^\circ$</div>
+            </div>
+
+            <div class="angle-visual-card" style="border-color: #ff8a80;">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#b0bec5" stroke-width="2.5" />
+                    <line x1="10" y1="40" x2="10" y2="5" stroke="#d81b60" stroke-width="2.5" />
+                    <rect x="10" y="32" width="8" height="8" fill="none" stroke="#d81b60" stroke-width="1.5" />
+                    <circle cx="10" cy="40" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label" style="color: #d81b60;">$\hat{a} = 90^\circ$</div>
+            </div>
+
+            <div class="angle-visual-card">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="20" y1="40" x2="48" y2="40" stroke="#b0bec5" stroke-width="2.5" />
+                    <line x1="20" y1="40" x2="5" y2="15" stroke="#d84315" stroke-width="2.5" />
+                    <path d="M 30 40 A 10 10 0 0 0 12 30" fill="none" stroke="#e53935" stroke-width="1.5" />
+                    <circle cx="20" cy="40" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label">$\hat{b} > 90^\circ$</div>
+            </div>
+
+            <div class="angle-visual-card">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="5" y1="40" x2="45" y2="40" stroke="#b0bec5" stroke-width="2.5" />
+                    <path d="M 32 40 A 12 12 0 0 0 8 40" fill="none" stroke="#e53935" stroke-width="1.5" />
+                    <circle cx="25" cy="40" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label">$\hat{e} = 180^\circ$</div>
+            </div>
+
+            <div class="angle-visual-card">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <line x1="25" y1="25" x2="45" y2="25" stroke="#b0bec5" stroke-width="2.5" />
+                    <circle cx="25" cy="25" r="9" fill="none" stroke="#e53935" stroke-width="1.5" />
+                    <circle cx="25" cy="25" r="3" fill="#37474f" />
+                </svg>
+                <div class="angle-label">$\hat{o} = 360^\circ$</div>
+            </div>
+        </div>
+
+        <div class="exercise-instruction" style="margin-top: -2px;">
+            <span class="exercise-letter">B</span> <span class="tag-stage">Argumentación</span> Responde justificando tu razonamiento a partir de las definiciones analizadas.
+        </div>
+        <div class="question-box" style="margin-top: 2px; padding: 4px 10px;">
+            <div class="question-item">
+                <strong>1.</strong> <span class="tag-stage">Justificación</span> ¿Es posible construir un triángulo que tenga dos ángulos interiores de tipo obtuso? Justifica geométricamente tu respuesta. <span class="write-line" style="width:70%;"></span>
+            </div>
+            <div class="question-item">
+                <strong>2.</strong> <span class="tag-stage">Deducción</span> Si la bisectriz de un ángulo genera dos ángulos agudos congruentes de $42^\circ$, ¿cuál era la clasificación del ángulo original? <span class="write-line" style="width:68%;"></span>
+            </div>
+        </div>
+
+        <!-- SECTION 4: SYSTEM FOCUS (Cuadro Comparativo) -->
+        <div class="section-header" style="margin-top: 4px;">
+            <div class="section-number">4</div>
+            <h2 class="section-title">SYSTEM FOCUS <span class="section-subtitle">Sistemas de Expresión Angular</span></h2>
+        </div>
+
+        <div class="exercise-instruction">
+            <span class="exercise-letter">A</span> <span class="tag-stage">Análisis</span> Estudia las diferencias estructurales mediante este cuadro comparativo (Organizador Gráfico Expositivo).
+        </div>
+
+        <table class="comparative-table">
+            <thead>
+                <tr>
+                    <th class="criterio-col">Criterio</th>
+                    <th class="col-50">Grados Decimales (Incomplejo)</th>
+                    <th class="col-50">Grados Sexagesimales (Complejo)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="criterio-col">Estructura</td>
+                    <td>Parte entera y parte fraccionaria separadas por un punto base 10.</td>
+                    <td>Dividido en tres subunidades de base 60: Grados ($^\circ$), Minutos ($'$) y Segundos ($''$).</td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">Unidades</td>
+                    <td>Únicamente grados: $35.2911^\circ$</td>
+                    <td>Grados, minutos y segundos: $35^\circ 17' 28''$</td>
+                </tr>
+                <tr>
+                    <td class="criterio-col">Uso Principal</td>
+                    <td>Cálculos algorítmicos, programación y herramientas digitales (GeoGebra, GPS decimal).</td>
+                    <td>Cartografía clásica, navegación aérea/marítima, topografía y astronomía.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Diagrama de Flujo de Conversión -->
+        <div class="conversion-flow-diagram">
+            <div class="flow-unit">°</div>
+            
+            <div class="flow-arrow-container">
+                <span class="flow-arrow-label">$\times 60$</span>
+                <span class="flow-arrow">➔</span>
+                <span class="flow-arrow rev">L</span>
+                <span class="flow-arrow-label div-label">$\div 60$</span>
+            </div>
+            
+            <div class="flow-unit">'</div>
+            
+            <div class="flow-arrow-container">
+                <span class="flow-arrow-label">$\times 60$</span>
+                <span class="flow-arrow">➔</span>
+                <span class="flow-arrow rev">L</span>
+                <span class="flow-arrow-label div-label">$\div 60$</span>
+            </div>
+            
+            <div class="flow-unit">''</div>
+        </div>
+
+        <!-- SECTION 5: PRACTICAL WORKSHOP -->
+        <div class="section-header" style="margin-top: 4px;">
+            <div class="section-number">5</div>
+            <h2 class="section-title">PRACTICAL WORKSHOP <span class="section-subtitle">Ejercicios de Conversión y Retos</span></h2>
+        </div>
+
+        <div class="workshop-grid">
+            <!-- Left Column: Examples (Handwritten note) -->
+            <div>
+                <div class="notebook-lined-box" style="margin-top: 0; min-height: 110px; padding: 4px 10px;">
+                    <p class="handwritten-text" style="line-height: 16px; font-size: 10pt;">
+                        <strong>Métodos de Conversión Rápidos:</strong><br>
+                        <u>De Decimal a Sexagesimal ($29.23^\circ$):</u><br>
+                        1. Grados = $29^\circ$.<br>
+                        2. Minutos = $0.23 \times 60 = 13.8' \to$ tomamos $13'$.<br>
+                        3. Segundos = $0.8 \times 60 = 48''$.<br>
+                        👉 Resultado: $29^\circ 13' 48''$.<br>
+                        <br>
+                        <u>De Sexagesimal a Decimal ($35^\circ 17' 28''$):</u><br>
+                        Fórmula: $G + \frac{M}{60} + \frac{S}{3600}$<br>
+                        $35 + \frac{17}{60} + \frac{28}{3600} \approx 35 + 0.2833 + 0.0078 = 35.2911^\circ$.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Exercises -->
+            <div class="workshop-exercises">
+                
+                <div class="exercise-card">
+                    <div class="exercise-title"><span class="tag-stage">Comprobación</span> 1. Conversión a Compleja</div>
+                    Convierte la medida angular $127.048^\circ$ a grados, minutos y segundos ($^\circ$, $'$, $''$). Muestra tu desarrollo analítico.
+                    <div class="math-input-box">$127.048^\circ = $ _______________________________</div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title"><span class="tag-stage">Comprobación</span> 2. Conversión a Incompleja</div>
+                    Expresa el valor angular de $62^\circ 24'$ en grados decimales. Desarrolla tu procedimiento.
+                    <div class="math-input-box">$62^\circ 24' = $ _______________________________</div>
+                </div>
+
+                <div class="exercise-card" style="padding: 6px 10px;">
+                    <div class="exercise-title"><span class="tag-stage">Argumentación</span> 3. Análisis de Concepto</div>
+                    Mateo afirma que $15.5^\circ$ equivale a $15^\circ 5'$. Explica mediante la conversión matemática por qué su afirmación es errónea.
+                    <div class="math-input-box" style="height: 24px; font-size: 7.5pt;">Tu explicación: _____________________________________</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Page 5 -->
+        <div class="footer-container">
+            <span class="footer-school"></span>
+            <div class="footer-page-num">5</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

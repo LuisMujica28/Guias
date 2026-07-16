@@ -1,0 +1,560 @@
+    <!-- ================= PHYSICAL PAGE 7 ================= -->
+    <div class="page" id="page7">
+        
+        <!-- SECTION 8: RAZONES TRIGONOMÉTRICAS -->
+        <div class="section-header-red" style="margin-top: -0.2cm;">
+            <div class="section-badge-red">8</div>
+            <h2 class="section-title-red">Razones Trigonométricas</h2>
+        </div>
+
+        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 12px; margin-bottom: 5px;">
+            <!-- Introduction -->
+            <div>
+                <p style="margin: 4px 0 10px 0; font-size: 8.2pt; line-height: 1.45; color: #37474f; text-align: justify;">
+                    Las razones trigonométricas son las relaciones matemáticas que se establecen entre las longitudes de los lados de un triángulo rectángulo con respecto a uno de sus ángulos agudos. Para un ángulo agudo $\alpha$, las tres razones principales se definen como:
+                </p>
+            </div>
+
+            <!-- Right Triangle SVG Diagram Centered -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #fafafa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px; width: 260px; margin: 0 auto 12px auto; box-sizing: border-box;">
+                <svg width="220" height="130" viewBox="0 0 150 90">
+                    <!-- Right Triangle -->
+                    <polygon points="25,10 25,80 135,80" fill="rgba(2, 136, 209, 0.06)" stroke="#0288d1" stroke-width="1.8"/>
+                    <rect x="25" y="74" width="6" height="6" fill="none" stroke="#0288d1" stroke-width="0.8"/>
+                    
+                    <!-- Angle alpha indicator -->
+                    <path d="M 115 80 A 20 20 0 0 0 119 68" fill="none" stroke="#c2185b" stroke-width="1.2"/>
+                    <text x="111" y="76" font-family="Inter" font-size="7pt" font-weight="bold" fill="#c2185b">α</text>
+                    
+                    <!-- Labels -->
+                    <text x="14" y="45" font-family="Inter" font-size="6.2pt" fill="#0288d1" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 45)">Cateto opuesto</text>
+                    <text x="80" y="88" font-family="Inter" font-size="6.2pt" fill="#0288d1" font-weight="bold" text-anchor="middle">Cateto adyacente (contiguo)</text>
+                    <text x="83" y="42" font-family="Inter" font-size="6.2pt" fill="#0288d1" font-weight="bold" text-anchor="middle" transform="rotate(-32 83 42)">Hipotenusa</text>
+                </svg>
+            </div>
+
+            <!-- 3 Main Formulas in 3 columns -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; width: 100%;">
+                <!-- Seno Card -->
+                <div style="border: 1px solid #e53935; border-top: 3.5px solid #e53935; background-color: #fdf2f2; padding: 8px; border-radius: 6px; text-align: center; box-sizing: border-box;">
+                    <span style="font-size: 7.8pt; color: #e53935; font-weight: bold; font-family: 'Fredoka', sans-serif;">Seno ($\sin\alpha$)</span>
+                    <p style="margin: 4px 0; font-size: 6.8pt; color: #37474f; line-height: 1.3;">
+                        Relación del cateto opuesto al ángulo $\alpha$ e hipotenusa.
+                    </p>
+                    <div style="font-size: 8.2pt; font-weight: bold; color: #b71c1c; margin-top: 4px;">
+                        $$ \sin(\alpha) = \frac{\text{C. Opuesto}}{\text{Hipotenusa}} $$
+                    </div>
+                </div>
+
+                <!-- Coseno Card -->
+                <div style="border: 1px solid #2e7d32; border-top: 3.5px solid #2e7d32; background-color: #f1f8e9; padding: 8px; border-radius: 6px; text-align: center; box-sizing: border-box;">
+                    <span style="font-size: 7.8pt; color: #2e7d32; font-weight: bold; font-family: 'Fredoka', sans-serif;">Coseno ($\cos\alpha$)</span>
+                    <p style="margin: 4px 0; font-size: 6.8pt; color: #37474f; line-height: 1.3;">
+                        Relación del cateto adyacente al ángulo $\alpha$ e hipotenusa.
+                    </p>
+                    <div style="font-size: 8.2pt; font-weight: bold; color: #1b5e20; margin-top: 4px;">
+                        $$ \cos(\alpha) = \frac{\text{C. Adyacente}}{\text{Hipotenusa}} $$
+                    </div>
+                </div>
+
+                <!-- Tangente Card -->
+                <div style="border: 1px solid #1565c0; border-top: 3.5px solid #1565c0; background-color: #e3f2fd; padding: 8px; border-radius: 6px; text-align: center; box-sizing: border-box;">
+                    <span style="font-size: 7.8pt; color: #1565c0; font-weight: bold; font-family: 'Fredoka', sans-serif;">Tangente ($\tan\alpha$)</span>
+                    <p style="margin: 4px 0; font-size: 6.8pt; color: #37474f; line-height: 1.3;">
+                        Relación del cateto opuesto e adyacente del ángulo $\alpha$.
+                    </p>
+                    <div style="font-size: 8.2pt; font-weight: bold; color: #0d47a1; margin-top: 4px;">
+                        $$ \tan(\alpha) = \frac{\text{C. Opuesto}}{\text{C. Adyacente}} $$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reciprocal functions spanning full width -->
+            <div class="light-blue-box" style="background-color: #f7f9fa; border-color: #cfd8dc; padding: 8px 12px; margin-bottom: 12px; box-sizing: border-box; width: 100%;">
+                <span style="font-size: 7.8pt; font-weight: bold; color: #37474f; font-family: 'Fredoka', sans-serif; display: block; margin-bottom: 2px;">Razones Trigonométricas Recíprocas (Inversas)</span>
+                <p style="margin: 0 0 6px 0; font-size: 7.2pt; color: #546e7a; line-height: 1.3;">
+                    Adicionalmente, se definen las tres razones recíprocas, que son las inversas multiplicativas de las principales:
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 7.4pt; color: #263238; font-weight: 500; text-align: center;">
+                    <div style="background: white; border: 1px solid #eceff1; padding: 4px; border-radius: 4px;">
+                        • <strong>Cosecante ($\csc\alpha$):</strong><br>$\csc\alpha = \frac{\text{Hipotenusa}}{\text{Cateto Opuesto}} = \frac{1}{\sin\alpha}$
+                    </div>
+                    <div style="background: white; border: 1px solid #eceff1; padding: 4px; border-radius: 4px;">
+                        • <strong>Secante ($\sec\alpha$):</strong><br>$\sec\alpha = \frac{\text{Hipotenusa}}{\text{Cateto Adyacente}} = \frac{1}{\cos\alpha}$
+                    </div>
+                    <div style="background: white; border: 1px solid #eceff1; padding: 4px; border-radius: 4px;">
+                        • <strong>Cotangente ($\cot\alpha$):</strong><br>$\cot\alpha = \frac{\text{Cateto Adyacente}}{\text{Cateto Opuesto}} = \frac{1}{\tan\alpha}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider Line -->
+            <div class="pitagoras-section-divider" style="margin: 4px 0;"></div>
+
+            <!-- Example section -->
+            <div style="margin-bottom: 5px;">
+                <strong style="color: #7e57c2; font-size: 8.5pt; text-transform: uppercase; font-family: 'Fredoka', sans-serif; display: block; margin-bottom: 4px;">Aplicación Práctica en la Vida Cotidiana</strong>
+                
+                <div class="applied-card" style="display: flex; gap: 15px; align-items: center; padding: 10px 12px; margin: 0; box-sizing: border-box; background-color: #ffffff; border-color: #cfd8dc;">
+                    <div style="flex: 1;">
+                        <p style="margin: 0; font-size: 7.6pt; line-height: 1.4; color: #37474f; text-align: justify;">
+                            Las razones trigonométricas permiten calcular distancias inaccesibles. Por ejemplo, un ingeniero puede determinar la <strong>altura ($h$)</strong> de un edificio sin escalarlo. Solo necesita situarse a una <strong>distancia ($d$)</strong> conocida desde la base y medir el ángulo de elevación ($\theta$) hasta la cima con un teodolito. La fórmula empleando la tangente es:
+                        </p>
+                        <div style="font-size: 9pt; font-weight: bold; color: #4a148c; text-align: center; margin: 6px 0;">
+                            $$ \text{Altura } (h) = \tan(\theta) \times \text{Distancia } (d) $$
+                        </div>
+                    </div>
+                    
+                    <!-- Building SVG Diagram Centered -->
+                    <div style="flex-shrink: 0; background-color: #fafafa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 6px;">
+                        <svg width="150" height="105" viewBox="0 0 150 105">
+                            <!-- Ground line -->
+                            <line x1="10" y1="90" x2="140" y2="90" stroke="#78909c" stroke-width="1.5" />
+                            
+                            <!-- Building -->
+                            <rect x="105" y="10" width="25" height="80" fill="#cfd8dc" stroke="#90a4ae" stroke-width="1.2" />
+                            <rect x="110" y="16" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="16" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="110" y="27" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="27" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="110" y="38" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="38" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="110" y="49" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="49" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="110" y="60" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="60" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="110" y="71" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            <rect x="120" y="71" width="5" height="7" fill="#ffffff" stroke="#90a4ae" stroke-width="0.6" />
+                            
+                            <!-- Sightline -->
+                            <line x1="25" y1="90" x2="105" y2="10" stroke="#7e57c2" stroke-width="1.5" stroke-dasharray="3 2" />
+                            
+                            <!-- Height indicator -->
+                            <line x1="136" y1="10" x2="136" y2="90" stroke="#e53935" stroke-width="1" />
+                            <path d="M 136 10 L 133 14 M 136 10 L 139 14 M 136 90 L 133 86 M 136 90 L 139 86" stroke="#e53935" stroke-width="1" />
+                            <text x="142" y="50" font-family="Inter" font-size="5.5pt" font-weight="bold" fill="#e53935" transform="rotate(90 142 50)" text-anchor="middle">Altura (h)</text>
+                            
+                            <!-- Angle indicator at vertex 25, 90 -->
+                            <path d="M 38 90 A 13 13 0 0 0 35 81" fill="none" stroke="#c2185b" stroke-width="1" />
+                            <text x="40" y="86" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#c2185b">θ</text>
+                            
+                            <!-- Distance indicator -->
+                            <line x1="25" y1="96" x2="105" y2="96" stroke="#1565c0" stroke-width="1" />
+                            <path d="M 25 96 L 29 93 M 25 96 L 29 99 M 105 96 L 101 93 M 105 96 L 101 99" stroke="#1565c0" stroke-width="1" />
+                            <text x="65" y="103" font-family="Inter" font-size="5.5pt" font-weight="bold" fill="#1565c0" text-anchor="middle">Distancia (d)</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 7 -->
+        <div class="footer-container">
+            <div class="footer-page-num">7</div>
+        </div>
+
+    </div>
+
+    <!-- ================= PHYSICAL PAGE 8 ================= -->
+    <div class="page" id="page8">
+        
+        <!-- SECTION 9: HISTORIA Y SIGNOS -->
+        <div class="section-header-red" style="margin-top: -0.2cm;">
+            <div class="section-badge-red">9</div>
+            <h2 class="section-title-red">Signos de las Funciones Trigonométricas</h2>
+        </div>
+
+        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 12px; margin-bottom: 5px;">
+            <!-- Orígenes Históricos Section -->
+            <div>
+                <strong style="color: #e53935; font-size: 8.5pt; text-transform: uppercase; font-family: 'Fredoka', sans-serif; display: block; margin-bottom: 4px;">Orígenes Históricos</strong>
+                <p style="margin: 0 0 10px 0; font-size: 7.8pt; line-height: 1.45; color: #37474f; text-align: justify;">
+                    Las razones trigonométricas nacieron en la antigua Grecia con el fin de resolver problemas astronómicos y de navegación. El astrónomo griego <strong>Hiparco de Nicea</strong> (siglo II a.C.) es considerado el <em>"padre de la trigonometría"</em> por tabular las primeras relaciones de cuerdas. Siglos después, matemáticos de la India como <strong>Aryabhata</strong> (siglo VI) definieron el concepto del seno moderno, y científicos del mundo islámico como <strong>Al-Battani</strong> perfeccionaron las razones de tangente y cotangente, consolidando su uso actual.
+                </p>
+                
+                <!-- Full Width Orange Tip Box -->
+                <div class="info-card" style="background-color: #fffde7; border-color: #ffe082; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box; margin: 0 0 12px 0; width: 100%;">
+                    <div style="display: flex; gap: 8px; align-items: center; width: 100%;">
+                        <div class="info-card-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M9 21h6a1 1 0 0 0 1-1v-1H8v1a1 1 0 0 0 1 1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" fill="none" stroke="#d84315" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="8" y1="9" x2="16" y2="9" stroke="#d84315" stroke-width="1.2" />
+                            </svg>
+                        </div>
+                        <span class="info-card-title orange-title" style="font-size: 8pt; font-family: 'Fredoka', sans-serif;">¿Sabías que...?</span>
+                    </div>
+                    <p class="info-card-text" style="font-size: 7.2pt; line-height: 1.35; text-align: justify; margin: 0; color: #5d4037;">
+                        El uso de la trigonometría es fundamental en la astronomía espacial. El método del <strong>paralaje estelar</strong> permite calcular la distancia a las estrellas más cercanas midiendo el ángulo de cambio de su posición aparente cuando la Tierra se encuentra en puntos opuestos de su órbita alrededor del Sol.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Divider Line -->
+            <div class="pitagoras-section-divider" style="margin: 4px 0;"></div>
+
+            <!-- Sign Table Section -->
+            <div style="margin-bottom: 5px; width: 100%;">
+                <strong style="color: #1565c0; font-size: 8.5pt; text-transform: uppercase; font-family: 'Fredoka', sans-serif; display: block; margin-bottom: 4px;">Signo en los Cuadrantes</strong>
+                <p style="margin: 0 0 8px 0; font-size: 7.8pt; line-height: 1.4; color: #37474f; text-align: justify;">
+                    El signo aritmético de las razones trigonométricas depende del cuadrante donde se encuentre el ángulo. A continuación se detallan los signos de las seis funciones:
+                </p>
+
+                <!-- Styled Full Width Table -->
+                <table style="width: 100%; border-collapse: collapse; border: 1.2px solid #cfd8dc; border-radius: 6px; overflow: hidden; font-family: 'Inter', sans-serif; font-size: 7.4pt; text-align: center; box-sizing: border-box; margin-bottom: 12px;">
+                    <thead>
+                        <tr style="background-color: #e3f2fd; border-bottom: 1.5px solid #add8e6; font-weight: bold; color: #0d47a1;">
+                            <th style="padding: 6px; font-size: 7pt; font-family: 'Fredoka', sans-serif; text-align: left; padding-left: 12px;">Funciones / Cuadrantes</th>
+                            <th style="padding: 6px; width: 50px;">I</th>
+                            <th style="padding: 6px; width: 50px;">II</th>
+                            <th style="padding: 6px; width: 50px;">III</th>
+                            <th style="padding: 6px; width: 50px;">IV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #ffffff; border-bottom: 1px solid #eceff1;">
+                            <td style="padding: 6px; font-weight: bold; text-align: left; padding-left: 12px; background-color: #f7f9fa; color: #37474f;">Seno ($\sin$) / Cosecante ($\csc$)</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                        </tr>
+                        <tr style="background-color: #fafafa; border-bottom: 1px solid #eceff1;">
+                            <td style="padding: 6px; font-weight: bold; text-align: left; padding-left: 12px; background-color: #f7f9fa; color: #37474f;">Coseno ($\cos$) / Secante ($\sec$)</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                        </tr>
+                        <tr style="background-color: #ffffff;">
+                            <td style="padding: 6px; font-weight: bold; text-align: left; padding-left: 12px; background-color: #f7f9fa; color: #37474f;">Tangente ($\tan$) / Cotangente ($\cot$)</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                            <td style="padding: 6px; color: #2e7d32; font-weight: bold; font-size: 8.5pt;">+</td>
+                            <td style="padding: 6px; color: #c2185b; font-weight: bold; font-size: 8.5pt;">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Mnemonic Box -->
+                <div class="light-blue-box" style="background-color: #fffde7; border-color: #ffe082; padding: 10px; margin: 0; box-sizing: border-box; width: 100%;">
+                    <span style="font-size: 8pt; font-weight: bold; color: #d84315; font-family: 'Fredoka', sans-serif; display: block; margin-bottom: 4px;">Regla Mnemotécnica Tradicional: "TODOS SIN TACOS"</span>
+                    <p style="margin: 0 0 6px 0; font-size: 7.4pt; line-height: 1.35; color: #37474f; text-align: justify;">
+                        Para recordar con facilidad el signo positivo en orden del I al IV cuadrante, se utiliza la mnemotecnia <strong>"TODOS SIN TACOS"</strong>:
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; font-size: 7.2pt; color: #263238; line-height: 1.35; font-weight: 500; padding-left: 5px;">
+                        <div>• <strong>TODOS</strong> (I Cuadrante): <span style="color: #2e7d32; font-weight: bold;">Todas</span> las funciones son positivas.</div>
+                        <div>• <strong>SIN</strong> (II Cuadrante): Solo el <span style="color: #2e7d32; font-weight: bold;">Seno</span> (y cosecante) es positivo.</div>
+                        <div>• <strong>TA</strong> (III Cuadrante): Solo la <span style="color: #2e7d32; font-weight: bold;">Tangente</span> (y cotangente) es positiva.</div>
+                        <div>• <strong>COS</strong> (IV Cuadrante): Solo el <span style="color: #2e7d32; font-weight: bold;">Coseno</span> (y secante) es positivo.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Page 8 -->
+        <div class="footer-container">
+            <div class="footer-page-num">8</div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= PHYSICAL PAGE 9: TALLER 3 (Parte 1) ================= -->
+    <div class="page" id="page9">
+
+        <!-- Workshop Header -->
+        <div class="workshop-header-container">
+            <div class="workshop-top-row">
+                <div class="workshop-badge">TALLER 3</div>
+            </div>
+            <h2 class="workshop-main-title">TRIÁNGULOS: Aplicaciones Trigonométricas</h2>
+        </div>
+
+        <!-- Two-column taller layout -->
+        <div class="taller-columns" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+
+            <!-- LEFT COLUMN -->
+            <div>
+
+                <!-- Q1 -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">1</div>
+                        <span>Escribe todas las razones trigonométricas para los ángulos agudos de un triángulo rectángulo cuyos catetos miden <strong>5 cm</strong> y <strong>12 cm</strong>.</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 6px;">
+                        <svg width="170" height="95" viewBox="0 0 170 95">
+                            <polygon points="20,10 20,80 155,80" fill="rgba(233,30,99,0.07)" stroke="#e91e63" stroke-width="1.6"/>
+                            <rect x="20" y="74" width="6" height="6" fill="none" stroke="#e91e63" stroke-width="0.9"/>
+                            <!-- Angle alpha -->
+                            <path d="M 135 80 A 18 18 0 0 0 139 68" fill="none" stroke="#c2185b" stroke-width="1.1"/>
+                            <text x="131" y="76" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#c2185b">α</text>
+                            <!-- Angle beta at top -->
+                            <path d="M 20 24 A 14 14 0 0 1 31 22" fill="none" stroke="#1565c0" stroke-width="1.1"/>
+                            <text x="28" y="22" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#1565c0">β</text>
+                            <!-- Labels -->
+                            <text x="9" y="45" font-family="Inter" font-size="6.5pt" fill="#0288d1" font-weight="bold" text-anchor="middle" transform="rotate(-90 9 45)">5 cm</text>
+                            <text x="87" y="90" font-family="Inter" font-size="6.5pt" fill="#0288d1" font-weight="bold" text-anchor="middle">12 cm</text>
+                            <text x="91" y="36" font-family="Inter" font-size="6.5pt" fill="#0288d1" font-weight="bold" text-anchor="middle" transform="rotate(-23 91 36)">13 cm</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">2</div>
+                        <span>Si $\sin\alpha = \dfrac{7}{25}$, halla las demás razones trigonométricas para el ángulo $\alpha$.</span>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">3</div>
+                        <span>Resuelve los triángulos (determina todos los lados faltantes y ángulos desconocidos):</span>
+                    </div>
+                    <!-- 3 Triangle diagrams in a row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px;">
+                        <!-- a) -->
+                        <div style="text-align: center;">
+                            <div style="font-size: 7.2pt; font-weight: bold; color: #263238; margin-bottom: 3px;">a)</div>
+                            <svg width="95" height="75" viewBox="0 0 95 75">
+                                <polygon points="10,60 80,60 10,10" fill="rgba(233,30,99,0.10)" stroke="#e91e63" stroke-width="1.5"/>
+                                <rect x="10" y="54" width="6" height="6" fill="none" stroke="#e91e63" stroke-width="0.8"/>
+                                <path d="M 62 60 A 16 16 0 0 0 65 48" fill="none" stroke="#c2185b" stroke-width="1"/>
+                                <text x="59" y="57" font-family="Inter" font-size="6pt" font-weight="bold" fill="#c2185b">50°</text>
+                                <text x="37" y="30" font-family="Inter" font-size="6pt" fill="#1565c0" font-weight="bold" transform="rotate(-54 37 30)">25</text>
+                                <text x="62" y="70" font-family="Inter" font-size="6pt" fill="#0288d1" font-weight="bold">x</text>
+                            </svg>
+                            <div style="font-size: 6pt; color: #546e7a; font-style: italic;">(x ≈ 16,07)</div>
+                        </div>
+                        <!-- b) -->
+                        <div style="text-align: center;">
+                            <div style="font-size: 7.2pt; font-weight: bold; color: #263238; margin-bottom: 3px;">b)</div>
+                            <svg width="95" height="75" viewBox="0 0 95 75">
+                                <polygon points="10,10 80,60 10,60" fill="rgba(255,152,0,0.12)" stroke="#ff9800" stroke-width="1.5"/>
+                                <rect x="10" y="54" width="6" height="6" fill="none" stroke="#ff9800" stroke-width="0.8"/>
+                                <path d="M 10 24 A 14 14 0 0 1 22 22" fill="none" stroke="#e65100" stroke-width="1"/>
+                                <text x="18" y="22" font-family="Inter" font-size="6pt" font-weight="bold" fill="#e65100">35°</text>
+                                <text x="37" y="72" font-family="Inter" font-size="6pt" fill="#0288d1" font-weight="bold">x</text>
+                                <text x="0" y="38" font-family="Inter" font-size="6pt" fill="#1565c0" font-weight="bold" transform="rotate(-55 4 38)">18</text>
+                            </svg>
+                            <div style="font-size: 6pt; color: #546e7a; font-style: italic;">(x ≈ 14,74)</div>
+                        </div>
+                        <!-- c) -->
+                        <div style="text-align: center;">
+                            <div style="font-size: 7.2pt; font-weight: bold; color: #263238; margin-bottom: 3px;">c)</div>
+                            <svg width="95" height="75" viewBox="0 0 95 75">
+                                <polygon points="80,10 10,60 80,60" fill="rgba(33,150,243,0.10)" stroke="#2196f3" stroke-width="1.5"/>
+                                <rect x="74" y="54" width="6" height="6" fill="none" stroke="#2196f3" stroke-width="0.8"/>
+                                <path d="M 26 60 A 16 16 0 0 1 29 47" fill="none" stroke="#1565c0" stroke-width="1"/>
+                                <text x="28" y="57" font-family="Inter" font-size="6pt" font-weight="bold" fill="#1565c0">40°</text>
+                                <text x="83" y="35" font-family="Inter" font-size="6pt" fill="#0288d1" font-weight="bold">x</text>
+                                <text x="42" y="70" font-family="Inter" font-size="6pt" fill="#1565c0" font-weight="bold">12</text>
+                            </svg>
+                            <div style="font-size: 6pt; color: #546e7a; font-style: italic;">(x ≈ 10,07)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">4</div>
+                        <span>Halla los valores de <strong>a</strong> y <strong>b</strong> en la figura.</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 6px;">
+                        <svg width="200" height="130" viewBox="0 0 200 130">
+                            <!-- Ground -->
+                            <line x1="10" y1="110" x2="175" y2="110" stroke="#78909c" stroke-width="1.4"/>
+                            <!-- Vertical wall right -->
+                            <line x1="160" y1="15" x2="160" y2="110" stroke="#37474f" stroke-width="1.5"/>
+                            <!-- Main triangle lines -->
+                            <line x1="20" y1="110" x2="160" y2="15" stroke="#1565c0" stroke-width="1.4" stroke-dasharray="3 2"/>
+                            <line x1="20" y1="110" x2="160" y2="75" stroke="#e53935" stroke-width="1.4" stroke-dasharray="3 2"/>
+                            <!-- Horizontal from observer to wall -->
+                            <line x1="20" y1="110" x2="160" y2="110" stroke="#37474f" stroke-width="1"/>
+                            <!-- b arrow -->
+                            <line x1="165" y1="15" x2="165" y2="75" stroke="#2e7d32" stroke-width="1.2"/>
+                            <path d="M 165 15 L 162 19 M 165 15 L 168 19 M 165 75 L 162 71 M 165 75 L 168 71" stroke="#2e7d32" stroke-width="1"/>
+                            <text x="170" y="48" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#2e7d32">b</text>
+                            <!-- a arrow on left -->
+                            <line x1="10" y1="20" x2="10" y2="108" stroke="#c2185b" stroke-width="1.2"/>
+                            <path d="M 10 20 L 7 24 M 10 20 L 13 24 M 10 108 L 7 104 M 10 108 L 13 104" stroke="#c2185b" stroke-width="1"/>
+                            <text x="1" y="68" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#c2185b">a</text>
+                            <!-- angles -->
+                            <path d="M 38 110 A 18 18 0 0 0 35 97" fill="none" stroke="#1565c0" stroke-width="1"/>
+                            <text x="40" y="106" font-family="Inter" font-size="6pt" font-weight="bold" fill="#1565c0">25°</text>
+                            <path d="M 55 110 A 18 18 0 0 0 52 95" fill="none" stroke="#e53935" stroke-width="1"/>
+                            <text x="57" y="106" font-family="Inter" font-size="6pt" font-weight="bold" fill="#e53935">45°</text>
+                            <!-- 120m horizontal label -->
+                            <text x="88" y="122" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#37474f" text-anchor="middle">120 m</text>
+                            <line x1="20" y1="118" x2="160" y2="118" stroke="#37474f" stroke-width="0.8"/>
+                            <path d="M 20 118 L 24 115 M 20 118 L 24 121 M 160 118 L 156 115 M 160 118 L 156 121" stroke="#37474f" stroke-width="0.8"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Q5 (sombra) -->
+                <div class="taller-question" style="margin-bottom: 0;">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">5</div>
+                        <span>¿Cuál es la longitud de la sombra que proyecta un edificio de <strong>80 m</strong> de altura, cuando el sol presenta un ángulo de elevación de <strong>40°</strong> desde la punta de la sombra?</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; width: 100%; height: 190px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <img src="img_taller3_sombra.png" alt="Edificio proyectando sombra" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+
+                <!-- Q6 (valor de y) -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">6</div>
+                        <span>Halla el valor de <strong>y</strong> en la figura.</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <svg width="170" height="130" viewBox="0 0 170 130">
+                            <!-- Vertical axis (y) -->
+                            <line x1="90" y1="10" x2="90" y2="120" stroke="#37474f" stroke-width="1.2"/>
+                            <!-- y label with arrows -->
+                            <path d="M 90 15 L 87 19 M 90 15 L 93 19" stroke="#1565c0" stroke-width="1"/>
+                            <path d="M 90 55 L 87 51 M 90 55 L 93 51" stroke="#1565c0" stroke-width="1"/>
+                            <line x1="96" y1="15" x2="96" y2="55" stroke="#1565c0" stroke-width="1"/>
+                            <text x="100" y="38" font-family="Inter" font-size="6.5pt" font-weight="bold" fill="#1565c0">y</text>
+                            <!-- Ground -->
+                            <line x1="10" y1="120" x2="155" y2="120" stroke="#78909c" stroke-width="1.4"/>
+                            <!-- Two sight lines from base point -->
+                            <line x1="25" y1="120" x2="90" y2="55" stroke="#7e57c2" stroke-width="1.4" stroke-dasharray="3 2"/>
+                            <line x1="25" y1="120" x2="90" y2="15" stroke="#e53935" stroke-width="1.4" stroke-dasharray="3 2"/>
+                            <!-- angles at base -->
+                            <path d="M 43 120 A 18 18 0 0 0 40 107" fill="none" stroke="#7e57c2" stroke-width="1"/>
+                            <text x="44" y="115" font-family="Inter" font-size="5.8pt" font-weight="bold" fill="#7e57c2">25°</text>
+                            <path d="M 60 120 A 18 18 0 0 0 56 104" fill="none" stroke="#e53935" stroke-width="1"/>
+                            <text x="61" y="115" font-family="Inter" font-size="5.8pt" font-weight="bold" fill="#e53935">50°</text>
+                            <!-- Base distance -->
+                            <text x="57" y="130" font-family="Inter" font-size="6pt" font-weight="bold" fill="#37474f" text-anchor="middle">8·√3</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Q7 (perímetro) -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">7</div>
+                        <span>Halla el perímetro de un triángulo equilátero inscrito en una circunferencia de radio <strong>15 cm</strong>.</span>
+                    </div>
+                </div>
+
+                <!-- Q8 (edificio/auto) -->
+                <div class="taller-question">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">8</div>
+                        <span>Desde la azotea de un <u>edificio</u> de <strong>110 m</strong> de altura, se observa un automóvil con un ángulo de depresión de <strong>30°</strong>. ¿Cuál es la distancia del automóvil a la base del edificio, medida horizontalmente?</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; width: 100%; height: 190px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <img src="img_taller3_edificio_auto.png" alt="Edificio y automóvil – ángulo de depresión 30°" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q9 (avión) -->
+                <div class="taller-question" style="margin-bottom: 0;">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">9</div>
+                        <span>Un avión vuela sobre un observador a <strong>450 km/h</strong>. Un minuto después, para verlo, el observador debe mirar con un ángulo de elevación de <strong>15°</strong>. ¿A qué altura (<em>x</em>) viaja el avión?</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; width: 100%; height: 190px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <img src="img_taller3_avion.png" alt="Avión observado desde tierra" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Page 9 -->
+        <div class="footer-container">
+            <div class="footer-page-num">9</div>
+        </div>
+
+    </div>
+
+    <!-- ================= PHYSICAL PAGE 10: TALLER 3 (Parte 2) ================= -->
+    <div class="page" id="page10">
+
+        <!-- Workshop Header (continuation) -->
+        <div class="workshop-header-container">
+            <div class="workshop-top-row">
+                <div class="workshop-badge">TALLER 3</div>
+                <span style="font-size: 7.5pt; color: #78909c; font-style: italic; margin-left: 4px;">Continuación</span>
+            </div>
+            <h2 class="workshop-main-title">TRIÁNGULOS: Problemas de Aplicación</h2>
+        </div>
+
+        <!-- Two-column taller layout -->
+        <div class="taller-columns" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+
+            <!-- LEFT COLUMN -->
+            <div>
+
+                <!-- Q10 -->
+                <div class="taller-question" style="margin-bottom: 0;">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">10</div>
+                        <span>Halla la altura de los dos árboles. El estudiante mide con su aparato óptico desde su altura de <strong>1,2 m</strong>:</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
+                        <div style="background: #f1f8e9; border: 1px solid #c5e1a5; border-radius: 6px; padding: 6px 10px; font-size: 7.4pt; color: #37474f;">
+                            <strong style="color: #2e7d32;">Árbol A:</strong> Ángulo de elevación <strong>35°</strong>, distancia horizontal <strong>4,5 m</strong>.
+                        </div>
+                        <div style="background: #e3f2fd; border: 1px solid #90caf9; border-radius: 6px; padding: 6px 10px; font-size: 7.4pt; color: #37474f;">
+                            <strong style="color: #1565c0;">Árbol B:</strong> Ángulo de elevación <strong>50°</strong>, distancia horizontal <strong>2,8 m</strong>.
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; width: 100%; height: 190px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <img src="img_taller3_arbol.png" alt="Estudiante midiendo altura de árbol" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+
+                <!-- Q11 -->
+                <div class="taller-question" style="margin-bottom: 0;">
+                    <div class="taller-question-title">
+                        <div class="taller-question-number">11</div>
+                        <span>Un globo aerostático vuela a <strong>900 m</strong> de altura y distingue un pueblo con un ángulo de depresión de <strong>15°</strong>. ¿A qué distancia horizontal del pueblo se halla el globo?</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 8px;">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; width: 100%; height: 190px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <img src="img_taller3_dirigible.png" alt="Globo aerostático viendo pueblo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Page 10 -->
+        <div class="footer-container">
+            <div class="footer-page-num">10</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

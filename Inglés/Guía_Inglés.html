@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 8: How's the neighborhood?</title>
+    <!-- Google Fonts for premium design -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. General Document Setup (Letter size print rules) --- */
+        @page {
+            size: 22cm 28cm;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #faf9f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Physical Page Container */
+        .page {
+            width: 22cm;
+            height: 28cm;
+            background: white;
+            padding: 0.8cm 1.4cm 0.6cm 1.4cm;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+
+        .page:not(.cover-page)::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid transparent;
+            background:
+                linear-gradient(to right, #cfd8dc 2.5px, transparent 2.5px) 0 0,
+                linear-gradient(to bottom, #cfd8dc 2.5px, transparent 2.5px) 0 0,
+                linear-gradient(to left, #cfd8dc 2.5px, transparent 2.5px) 100% 0,
+                linear-gradient(to bottom, #cfd8dc 2.5px, transparent 2.5px) 100% 0,
+                linear-gradient(to right, #cfd8dc 2.5px, transparent 2.5px) 0 100%,
+                linear-gradient(to top, #cfd8dc 2.5px, transparent 2.5px) 0 100%;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* --- 2. Header Banner --- */
+        .header-banner {
+            position: relative;
+            height: 4.6cm;
+            margin-top: -0.8cm;
+            margin-left: -1.4cm;
+            margin-right: -1.4cm;
+            margin-bottom: 0.4cm;
+            border-radius: 0;
+            overflow: hidden;
+            background: url('neighborhood_header.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Overlay to make white text readable */
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+
+        /* Unit 8 Label */
+        .unit-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32pt;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-bottom-right-radius: 15px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Unit Title */
+        .unit-title-container {
+            z-index: 2;
+            margin-top: 2.0cm;
+            margin-left: 1.4cm;
+        }
+
+        .unit-title {
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 24pt;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin: 0;
+        }
+
+        /* Objectives banner */
+        .objectives-bar {
+            z-index: 2;
+            background-color: #e53935;
+            color: white;
+            padding: 8px 1.4cm;
+            font-family: 'Inter', sans-serif;
+            font-size: 9.5pt;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.25);
+            margin-top: auto;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .objective-bullet {
+            font-size: 8pt;
+            color: #ffcdd2;
+        }
+
+        /* --- 3. Section Headers --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 12px 0 6px 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 3px;
+        }
+
+        .section-number {
+            background-color: #d81b60;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 13pt;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 11.5pt;
+            color: #263238;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 9.5pt;
+            color: #78909c;
+            font-weight: 500;
+        }
+
+        .exercise-instruction {
+            font-size: 8.5pt;
+            margin: 4px 0 8px 0;
+            line-height: 1.35;
+            color: #37474f;
+        }
+
+        .exercise-letter {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            color: #d81b60;
+            font-size: 10pt;
+            margin-right: 4px;
+        }
+
+        /* --- 4. Section 1: WORD POWER --- */
+        .word-power-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 15px;
+            margin-bottom: 6px;
+        }
+
+        .matching-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .matching-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .column-title {
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #546e7a;
+            margin-bottom: 4px;
+        }
+
+        .matching-item {
+            font-size: 8.5pt;
+            color: #263238;
+            line-height: 1.3;
+            height: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .matching-item span {
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        /* Street View Image Card */
+        .street-view-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border: 1.5px solid #e0e0e0;
+            height: 130px;
+        }
+
+        .street-view-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Vocabulary Pill Box */
+        .vocab-pill-box {
+            background-color: #fff8e1;
+            border: 1.5px solid #ffe082;
+            border-radius: 8px;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 6px 0;
+        }
+
+        .vocab-pill {
+            background-color: #ffecb3;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 8pt;
+            font-weight: 700;
+            color: #5d4037;
+            border: 1px solid #ffe082;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Notebook Paper Lined Box */
+        .notebook-lined-box {
+            background: #fff;
+            background-image: linear-gradient(#e1f5fe 1px, transparent 1px);
+            background-size: 100% 20px;
+            line-height: 20px;
+            padding: 6px 15px;
+            border-left: 3px solid #ff8a80;
+            border-radius: 4px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.04);
+            min-height: 40px;
+            margin: 4px 0 6px 0;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .handwritten-text {
+            color: #1a237e;
+            font-family: 'Caveat', cursive;
+            font-size: 12.5pt;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        /* --- 5. Section 2: CONVERSATION --- */
+        .conversation-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 15px;
+            align-items: start;
+            margin-top: 6px;
+        }
+
+        .dialogue-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dialogue-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speaker-badge {
+            width: 70px;
+            text-align: center;
+            flex-shrink: 0;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8pt;
+            font-weight: bold;
+            color: white;
+            padding: 4px 6px;
+            border-radius: 12px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .speaker-greg {
+            background-color: #ef5350;
+        }
+
+        .speaker-cook {
+            background-color: #26a69a;
+        }
+
+        .speech-bubble {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 8.5pt;
+            line-height: 1.35;
+            max-width: 80%;
+            font-weight: 500;
+        }
+
+        .bubble-greg {
+            background-color: #ffebee;
+            color: #b71c1c;
+            border: 1px solid #ffcdd2;
+            border-top-left-radius: 2px;
+        }
+
+        .bubble-cook {
+            background-color: #e0f2f1;
+            color: #004d40;
+            border: 1px solid #b2dfdb;
+            border-top-left-radius: 2px;
+        }
+
+        /* Vector Illustration Container */
+        .illustration-box {
+            border-radius: 10px;
+            border: 1.5px solid #cfd8dc;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 4px;
+        }
+
+        /* --- 6. Footer --- */
+        .footer-page-num {
+            position: absolute;
+            bottom: 0.6cm;
+            right: 0;
+            background-color: #263238;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 11pt;
+            padding: 5px 12px 5px 16px;
+            border-radius: 6px 0 0 6px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Print Media Adjustments */
+        @media print {
+            body {
+                background-color: transparent;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                page-break-after: always;
+            }
+            .page::before {
+                display: none !important;
+            }
+        }
+
+        /* --- 7. Cover Page Styles --- */
+        .cover-page {
+            padding: 0 !important;
+            border: none;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-page {
+            background: linear-gradient(135deg, #fffcf6 0%, #fff0f3 40%, #f3faf9 100%) !important;
+        }
+
+        /* --- 8. Page 51 Future Unit Replica Styles --- */
+        .future-layout-grid {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 26px;
+            height: 100%;
+            position: relative;
+        }
+
+        .future-col-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 22px;
+            padding-right: 5px;
+            height: 98%;
+        }
+
+        .future-col-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+            border-left: 1px solid #e0e0e0;
+            padding-left: 20px;
+            height: 98%;
+        }
+
+        /* Exercise styling (like photo) */
+        .ex-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            margin-bottom: 6px;
+        }
+
+        .ex-num {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11.5pt;
+            font-weight: bold;
+            color: #d84315;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ex-tag-black {
+            background-color: #263238;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8pt;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 12px;
+            text-transform: capitalize;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .ex-instruction-text {
+            font-size: 8.5pt;
+            color: #263238;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .ex-audio-icon {
+            font-size: 8.5pt;
+            color: #d84315;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* Handwritten cursive styles for answers */
+        .hw-cursive {
+            font-family: 'Caveat', cursive;
+            font-size: 12.5pt;
+            color: #1a237e;
+            font-weight: bold;
+            border-bottom: 1.2px dashed #78909c;
+            padding: 0 4px;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .hw-cursive-static {
+            font-family: 'Caveat', cursive;
+            font-size: 12.5pt;
+            color: #1a237e;
+            font-weight: bold;
+        }
+
+        /* Step badges in right column */
+        .step-badge {
+            display: flex;
+            align-items: center;
+            background-color: #263238;
+            border-radius: 4px;
+            width: fit-content;
+            margin: 10px 0 4px 0;
+            overflow: hidden;
+            border: 1px solid #263238;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .step-text {
+            background-color: #ef6c00;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 7.5pt;
+            font-weight: bold;
+            padding: 2px 6px;
+            text-transform: uppercase;
+        }
+
+        .step-num {
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 9pt;
+            font-weight: bold;
+            padding: 2px 8px;
+            background-color: #263238;
+        }
+
+        /* Video / Vlog Container */
+        .video-container {
+            border-radius: 8px;
+            border: 1.5px solid #263238;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 6px;
+        }
+
+        .video-header {
+            background-color: #00acc1;
+            color: white;
+            padding: 5px 10px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8.5pt;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .video-body {
+            position: relative;
+            height: 140px;
+        }
+
+        .video-body img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(216, 67, 21, 0.9);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13pt;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .video-overlay-text {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-weight: bold;
+        }
+
+        /* Table replica for Step 2 */
+        .goals-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .goals-table th {
+            background-color: #bf360c;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            padding: 6px;
+            text-align: center;
+            border: 1px solid #bf360c;
+        }
+
+        .goals-table td {
+            padding: 9px 8px;
+            border: 1px solid #b0bec5;
+            vertical-align: middle;
+            color: #37474f;
+        }
+
+        .goals-table td:first-child {
+            background-color: #eceff1;
+            font-weight: bold;
+            color: #263238;
+            text-align: center;
+            width: 70px;
+        }
+
+        .line-input {
+            border-bottom: 1.2px dashed #90a4ae;
+            height: 15px;
+            display: inline-block;
+            width: 90%;
+        }
+
+        /* Info boxes */
+        .info-box-future {
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-top: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            font-size: 8pt;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8.5pt;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .info-box-real-english {
+            border: 1.5px solid #ffcc80;
+            border-left: 5px solid #d84315;
+            background-color: #fff8e1;
+        }
+
+        .info-box-real-english .info-box-header {
+            color: #b71c1c;
+        }
+
+        .info-box-digital-citizen {
+            border: 1.5px solid #80deea;
+            border-left: 5px solid #00acc1;
+            background-color: #e0f7fa;
+        }
+
+        .info-box-digital-citizen .info-box-header {
+            color: #006064;
+        }
+
+        /* Vertical Side Banner */
+        .vertical-banner {
+            position: absolute;
+            right: 0;
+            top: 2.0cm;
+            width: 34px;
+            height: 180px;
+            background-color: #d84315;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            box-shadow: -2px 2px 6px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .vertical-banner-text {
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11pt;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .numbered-list {
+            margin: 0;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .numbered-list-item {
+            font-size: 8.5pt;
+            color: #37474f;
+            line-height: 1.4;
+        }
+
+        .numbered-list-item span {
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        /* --- 9. Page 51 Unit Intro & Blog Styles --- */
+        .unit-header-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 20px;
+            height: 3.8cm;
+            margin-bottom: 0.7cm;
+        }
+
+        .unit-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .unit-header-right {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1.5px solid #263238;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .unit-header-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+        }
+
+        .unit-title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .unit-large-badge {
+            background-color: #263238;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24pt;
+            font-weight: 800;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: 2px solid #263238;
+            box-shadow: 2px 2px 0px #cfd8dc;
+        }
+
+        .unit-yellow-title {
+            background-color: #ffd54f;
+            color: #263238;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 15pt;
+            font-weight: bold;
+            padding: 4px 18px;
+            border-radius: 4px;
+            border: 2px solid #263238;
+            box-shadow: 3px 3px 0px #263238;
+            transform: rotate(-1deg);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .objectives-card {
+            background-color: #e0f2f1;
+            border: 1.5px solid #b2dfdb;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 8pt;
+            color: #004d40;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .objectives-card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            margin-bottom: 2px;
+            font-size: 8.5pt;
+        }
+
+        .objectives-list {
+            margin: 0;
+            padding-left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            list-style-type: square;
+        }
+
+        .objectives-list li {
+            line-height: 1.25;
+        }
+
+        /* Blog Layout */
+        .blog-layout-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .career-photos-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .career-photo-card {
+            background: white;
+            border: 1.5px solid #263238;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px rgba(38, 50, 56, 0.15);
+            padding: 4px;
+            width: 225px;
+            height: 145px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1.5px solid #b0bec5;
+            font-size: 8.5pt;
+            color: #37474f;
+            line-height: 1.48;
+            text-align: justify;
+            background-image: radial-gradient(#eceff1 1px, transparent 1px);
+            background-size: 15px 15px;
+            height: 98%;
+        }
+
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #cfd8dc;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+
+        .blog-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #263238;
+            border: 2px solid #263238;
+            padding: 2px 10px;
+            background-color: #fff;
+            box-shadow: 2px 2px 0px #263238;
+            border-radius: 4px;
+            text-transform: capitalize;
+        }
+
+        .blog-date {
+            color: #78909c;
+            font-size: 7.5pt;
+            font-weight: bold;
+        }
+
+        .blog-text-content {
+            height: calc(100% - 35px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .blog-text-content p {
+            margin: 0;
+            font-size: 8pt;
+            line-height: 1.45;
+        }
+
+        /* --- 10. Welcome Page Styles --- */
+        .welcome-top-bar {
+            height: 1.1cm;
+            background-color: #d84315; /* Naranja/rojo de cabecera */
+            margin-left: -1.6cm;
+            margin-right: -2.2cm;
+            margin-top: -0.8cm;
+            display: flex;
+            align-items: center;
+            padding-left: 1.6cm;
+            margin-bottom: 0.8cm;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .welcome-tab {
+            background-color: #263238;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11pt;
+            font-weight: bold;
+            padding: 4px 22px;
+            border-radius: 0 0 8px 8px;
+            position: absolute;
+            top: 0;
+            left: 1.6cm;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .welcome-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            height: calc(100% - 1.8cm);
+        }
+
+        .welcome-col-left {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            border-right: 1.5px dashed #cfd8dc;
+            padding-right: 16px;
+        }
+
+        .welcome-col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .welcome-section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 12.5pt;
+            font-weight: bold;
+            color: #bf360c;
+            margin-top: 6px;
+            margin-bottom: 8px;
+            border-bottom: 1.5px solid #ffccbc;
+            padding-bottom: 2px;
+            text-transform: lowercase;
+            font-style: italic;
+        }
+
+        /* Housework Grid & Sprites */
+        .housework-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            justify-items: center;
+            margin-bottom: 12px;
+        }
+
+        .housework-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .housework-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background-color: #263238;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7.5pt;
+            font-weight: bold;
+            border: 1px solid white;
+            z-index: 2;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .housework-crop {
+            width: 130px;
+            height: 95px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 6px;
+            border: 1.5px solid #263238;
+            box-shadow: 2px 2px 0px rgba(38, 50, 56, 0.15);
+        }
+
+        .housework-crop img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Housework Table */
+        .housework-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 7.5pt;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1.5px solid #b0bec5;
+        }
+
+        .housework-table th, .housework-table td {
+            border: 1px solid #b0bec5;
+            text-align: center;
+            padding: 8px 10px;
+        }
+
+        .housework-table th {
+            background-color: #eceff1;
+            color: #37474f;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        .housework-table td:first-child {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            text-align: left;
+            width: 28%;
+            color: #37474f;
+        }
+
+        .housework-table td.handwritten {
+            font-family: 'Kalam', cursive;
+            font-size: 9pt;
+            color: #0d47a1;
+            line-height: 1.1;
+        }
+
+        /* Movie Types Layout & Sprites */
+        .movie-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .movie-pics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-content: start;
+        }
+
+        .movie-pic-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .movie-pic-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background-color: #263238;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7.5pt;
+            font-weight: bold;
+            border: 1px solid white;
+            z-index: 2;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .movie-crop {
+            width: 125px;
+            height: 95px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 6px;
+            border: 1.5px solid #263238;
+            box-shadow: 2px 2px 0px rgba(38, 50, 56, 0.15);
+        }
+
+        .movie-crop img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PORTADA ================= -->
+    <div class="page cover-page">
+        <img src="Portada.png" alt="Portada Inglés" class="cover-image">
+    </div>
+
+    </div>
+
+    <!-- ================= PHYSICAL PAGE 50 ================= -->
+    <div class="page content-page">
+        
+        <!-- Header Banner -->
+        <div class="header-banner">
+            <div class="banner-overlay"></div>
+            <!-- Unit 8 Tab -->
+            <div class="unit-badge">8</div>
+            <!-- Title -->
+            <div class="unit-title-container">
+                <h1 class="unit-title">How's the neighborhood?</h1>
+            </div>
+            <!-- Objectives -->
+            <div class="objectives-bar">
+                <div class="objective-item">
+                    <span class="objective-bullet">▶</span>
+                    <span>Ask about and describe places</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-bullet">▶</span>
+                    <span>Describe a neighborhood</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: WORD POWER -->
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">WORD POWER <span class="section-subtitle">Places and activities</span></h2>
+        </div>
+
+        <!-- Exercise 1A -->
+        <div class="exercise-instruction">
+            <span class="exercise-letter">A</span> Match the places and the definitions. Then ask and answer the questions with a partner.
+        </div>
+
+        <div class="word-power-grid">
+            <!-- Left Side: Matching columns -->
+            <div class="matching-columns">
+                <!-- Column 1: Places -->
+                <div class="matching-column">
+                    <div class="column-title">What's a . . . ?</div>
+                    <div class="matching-item"><span>1.</span> clothing store __________</div>
+                    <div class="matching-item"><span>2.</span> grocery store __________</div>
+                    <div class="matching-item"><span>3.</span> hair salon __________</div>
+                    <div class="matching-item"><span>4.</span> laundromat __________</div>
+                    <div class="matching-item"><span>5.</span> newsstand __________</div>
+                    <div class="matching-item"><span>6.</span> stadium __________</div>
+                    <div class="matching-item"><span>7.</span> Wi-Fi hot spot __________</div>
+                </div>
+
+                <!-- Column 2: Definitions -->
+                <div class="matching-column">
+                    <div class="column-title">It's a place where you . . .</div>
+                    <div class="matching-item"><span>a.</span> get food and small items for the home</div>
+                    <div class="matching-item"><span>b.</span> can connect to the Internet</div>
+                    <div class="matching-item"><span>c.</span> get a haircut</div>
+                    <div class="matching-item"><span>d.</span> buy newspapers and magazines</div>
+                    <div class="matching-item"><span>e.</span> see a game or a concert</div>
+                    <div class="matching-item"><span>f.</span> find new fashions</div>
+                    <div class="matching-item"><span>g.</span> wash and dry your clothes</div>
+                </div>
+            </div>
+
+            <!-- Right Side: Street Image -->
+            <div class="street-view-card">
+                <!-- High-quality matching urban store photo saved locally -->
+                <img src="neighborhood_shops.jpg" alt="Neighborhood shops">
+            </div>
+        </div>
+
+        <!-- Exercise 1B -->
+        <div class="exercise-instruction">
+            <span class="exercise-letter">B</span> <strong>PAIR WORK</strong> Write definitions for these places.
+        </div>
+
+        <!-- Vocab Pills -->
+        <div class="vocab-pill-box">
+            <div class="vocab-pill">coffee shop</div>
+            <div class="vocab-pill">drugstore</div>
+            <div class="vocab-pill">gas station</div>
+            <div class="vocab-pill">library</div>
+            <div class="vocab-pill">post office</div>
+        </div>
+
+        <!-- Lined Notebook card with handwriting -->
+        <div class="notebook-lined-box">
+            <p class="handwritten-text">It's a place where you drink coffee and tea and eat small meals. (coffee shop)</p>
+        </div>
+
+        <!-- Exercise 1C -->
+        <div class="exercise-instruction" style="margin-bottom: 2px;">
+            <span class="exercise-letter">C</span> <strong>GROUP WORK</strong> Read your definitions. Can your classmates guess the places?
+        </div>
+
+        <!-- SECTION 2: CONVERSATION -->
+        <div class="section-header" style="margin-top: 6px;">
+            <div class="section-number">2</div>
+            <h2 class="section-title">CONVERSATION <span class="section-subtitle">I just moved in.</span></h2>
+        </div>
+
+        <!-- Exercise 2A -->
+        <div class="exercise-instruction" style="margin-bottom: 4px;">
+            <span class="exercise-letter">A</span> Listen and practice.
+        </div>
+
+        <div class="conversation-grid">
+            <!-- Left Side: Dialogue -->
+            <div class="dialogue-flow">
+                
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-greg">Greg</div>
+                    <div class="speech-bubble bubble-greg">Excuse me! Hi, I'm your new neighbor, Greg. I just moved in.</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-cook">Mrs. Cook</div>
+                    <div class="speech-bubble bubble-cook">Oh. Yes?</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-greg">Greg</div>
+                    <div class="speech-bubble bubble-greg">I'm looking for a grocery store. Are there any around here?</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-cook">Mrs. Cook</div>
+                    <div class="speech-bubble bubble-cook">Yes, there are some on Pine Street.</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-greg">Greg</div>
+                    <div class="speech-bubble bubble-greg">Oh, good. And is there a laundromat near here?</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-cook">Mrs. Cook</div>
+                    <div class="speech-bubble bubble-cook">Well, I think there's one across from the shopping center.</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-greg">Greg</div>
+                    <div class="speech-bubble bubble-greg">Thank you.</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-cook">Mrs. Cook</div>
+                    <div class="speech-bubble bubble-cook">By the way, there's a hair salon in the shopping center.</div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-badge speaker-greg">Greg</div>
+                    <div class="speech-bubble bubble-greg">A hair salon?</div>
+                </div>
+
+            </div>
+
+            <!-- Right Side: Vector Illustration -->
+            <div class="illustration-box" style="display: flex; justify-content: flex-start; align-items: center; background: transparent; border: none; box-shadow: none; overflow: visible;">
+                <img src="conversation_neighborhood1.png" alt="Greg and Mrs. Cook conversation" style="width: 115%; height: auto; border-radius: 8px; object-fit: cover; margin-left: -25px;">
+            </div>
+        </div>
+
+        <!-- Page Number Footer -->
+        <div class="footer-page-num">50</div>
+
+    </div>
+
+        <!-- ================= PHYSICAL PAGE 51 (UNIT INTRO & BLOG) ================= -->
+        <div class="page content-page">
+            
+            <!-- Cabecera de Inicio de Unidad -->
+            <div class="unit-header-grid">
+                <!-- Izquierda: Titulo y Objetivos -->
+                <div class="unit-header-left">
+                    <div class="unit-title-row">
+                        <div class="unit-large-badge">9</div>
+                        <div class="unit-yellow-title">My future</div>
+                    </div>
+                    <div class="objectives-card">
+                        <div class="objectives-card-title">In this unit, we will . . .</div>
+                        <ul class="objectives-list">
+                            <li>talk about jobs and the future</li>
+                            <li>talk about checking in at an airport</li>
+                            <li>write a short text about our future</li>
+                            <li>learn how to take part in a debate</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Derecha: Imagen Estudiante -->
+                <div class="unit-header-right">
+                    <img src="student_hallway.png" alt="Student in hallway">
+                </div>
+            </div>
+
+            <!-- Contenido Principal: Dos Columnas (Fotos cascada y Blog) -->
+            <div class="blog-layout-grid" style="height: 14.5cm; margin-bottom: 0.2cm;">
+                
+                <!-- Columna Izquierda: Fotos de Carreras en Cascada -->
+                <div class="career-photos-col">
+                    <div class="career-photo-card" style="transform: rotate(-2.5deg) translate(35px, 70px); margin-bottom: 2px;">
+                        <img src="career_tech.png" alt="Technology Career">
+                    </div>
+                    <div class="career-photo-card" style="transform: rotate(2deg) translate(50px, 70px); margin-bottom: 2px;">
+                        <img src="career_law.png" alt="Law Career">
+                    </div>
+                    <div class="career-photo-card" style="transform: rotate(-1.5deg) translate(200px, 70px);">
+                        <img src="career_journalism.png" alt="Journalism Career">
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Tarjeta del Blog -->
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <div class="blog-title">Rafael's blog</div>
+                        <div class="blog-date">Posted February 15</div>
+                    </div>
+                    <div class="blog-text-content">
+                        <p><strong>What are you going to do</strong> after you graduate from high school? If you don't have a clue or feel totally confused, don't worry! Today's blog is about the skills you and I are going to need when it's our turn to look for work.</p>
+                        <p>Technology is changing everything, right? It's taking over some jobs but creating others. Young people with I.T. skills are probably going to find jobs easily. They're going to be in charge of all the technology of the future. My friend Blanca wants to have this type of job. She wants to be a programmer or a web designer, but that's not for me. I'm not going to look for a job in I.T. I want to do something different.</p>
+                        <p>Thinking skills, like critical thinking and problem solving, are already really important for a lot of jobs these days. They'll probably be even more important in the future. Doctors, lawyers, and business people use them a lot. My friend Ashley wants to be a lawyer. She's going to study law in college.</p>
+                        <p>For me, the most important skills are going to be communication skills, things like writing and public speaking. You need these skills for a lot of careers, especially if you want to be a teacher, a manager, or to work in the media.</p>
+                        <p>And that's what I want to do. I'm going to be a journalist. I love writing about all kinds of different things. To be honest, that's why I like writing my blog. That's it for today. Hope this was useful. See you next time!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Ejercicios y Real English (Pie de Página 51) -->
+            <div class="future-layout-grid" style="height: 5.5cm; margin-top: auto; border-top: 1px solid #eceff1; padding-top: 8px;">
+                <!-- Columna Izquierda: Ejercicios -->
+                <div class="future-col-left" style="border: none; padding-right: 0; justify-content: flex-start; gap: 8px;">
+                    <!-- Ejercicio 1 -->
+                    <div>
+                        <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px;">
+                            <div class="ex-num" style="font-size: 8.5pt;">1</div>
+                            <div class="ex-tag-black" style="background-color: #bf360c; padding: 1px 6px; font-size: 7.5pt;">Pairwork</div>
+                            <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal;">Answer the question.</div>
+                        </div>
+                        <div style="font-size: 8pt; color: #37474f; padding-left: 12px;">
+                            What job would you like to do when you finish your education, and why?
+                            <div style="margin-top: 4px;"><span class="line-input" style="width: 95%; height: 12px;"></span></div>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 2 -->
+                    <div style="margin-top: 4px;">
+                        <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <div class="ex-num" style="font-size: 8.5pt;">2</div>
+                                <div class="ex-audio-icon" style="cursor: pointer;">
+                                    <a href="https://raw.githubusercontent.com/LuisMujica28/Guias/main/Ingl%C3%A9s/Audio%201.mp3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 3px;">
+                                        🔊 <span style="text-decoration: underline;">Listen</span>
+                                    </a>
+                                </div>
+                                <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal; margin-left: 4px;">Read and listen to Rafael's blog post. Choose the correct alternative.</div>
+                            </div>
+                            <!-- QR Code to scan on print -->
+                            <div style="display: flex; align-items: center; gap: 4px; border: 1px solid #cfd8dc; padding: 2px 6px; border-radius: 4px; background: white; box-shadow: 1px 1px 2px rgba(0,0,0,0.05);">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://raw.githubusercontent.com/LuisMujica28/Guias/main/Ingl%C3%A9s/Audio%201.mp3" alt="Audio QR" style="width: 28px; height: 28px;">
+                                <span style="font-size: 6.5pt; font-weight: bold; color: #78909c; text-transform: uppercase;">Scan Audio</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 8pt; color: #37474f; padding-left: 12px; line-height: 1.3;">
+                            Rafael <strong>knows</strong> / <strong>doesn't know</strong> the job he wants to do in the future.
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna Derecha: Real English -->
+                <div class="future-col-right" style="border-left: 1px solid #e0e0e0; padding-left: 15px; justify-content: flex-start; gap: 4px;">
+                    <div class="info-box-future info-box-real-english" style="margin-top: 0; padding: 8px 12px;">
+                        <div class="info-box-header">
+                            <span>💬</span> Real English
+                        </div>
+                        <div style="font-weight: bold; margin-bottom: 2px; font-size: 7.5pt; color: #5d4037;">Find these phrases and check their meanings.</div>
+                        <div style="font-style: italic; color: #5d4037; font-size: 7pt; line-height: 1.35;">
+                            "you don't have a clue" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "totally confused"<br>
+                            "that's not for me" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "to be honest"<br>
+                            "that's it for today"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Number Footer -->
+            <div class="footer-page-num">51</div>
+
+        </div>
+
+        <!-- ================= PHYSICAL PAGE 52 ================= -->
+        <div class="page content-page" style="padding-right: 2.2cm;">
+        
+        <!-- Pestaña lateral vertical derecha -->
+        <div class="vertical-banner">
+            <div class="vertical-banner-text">My future</div>
+        </div>
+
+        <div class="future-layout-grid">
+            
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="future-col-left">
+                
+                <!-- EJERCICIO 3 -->
+                <div>
+                    <div class="ex-header">
+                        <div class="ex-num">3</div>
+                        <div class="ex-tag-black">Comprehension</div>
+                        <div class="ex-instruction-text">Complete the sentences with words from the blog.</div>
+                    </div>
+                    <div class="numbered-list">
+                        <div class="numbered-list-item">
+                            <span>1.</span> Elena is planning to study Graphic Design in college and develop her <span class="hw-cursive">creative</span> skills.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>2.</span> Marcus is going to need <span class="line-input" style="width: 140px;"></span> skills for his career as a journalist.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>3.</span> Sofia is going to work on her <span class="line-input" style="width: 120px;"></span> skills so she can become a web developer.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EJERCICIO 4 -->
+                <div>
+                    <div class="ex-header">
+                        <div class="ex-num">4</div>
+                        <div class="ex-audio-icon">🔊 <span>006</span></div>
+                        <div class="ex-instruction-text">Reorder the words to make sentences about future plans. Then listen and check.</div>
+                    </div>
+                    
+                    <div style="font-size: 8pt; color: #546e7a; font-style: italic; padding-left: 12px; margin-bottom: 4px;">
+                        going / what / do / to / you / are / graduate -> <span class="hw-cursive-static" style="font-size: 11pt; border-bottom: 1px dashed #78909c;">What are you going to do</span> when you graduate?
+                    </div>
+
+                    <div class="numbered-list" style="gap: 10px;">
+                        <div class="numbered-list-item">
+                            <span>1.</span> going / a / to / build / I'm / website
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>2.</span> to / going / are / travel / they / next / year
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>3.</span> study / going / to / is / she / medicine
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>4.</span> not / going / I'm / to / look / for / a / job / yet
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>5.</span> be / to / wants / he / programmer / a
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>6.</span> writing / love / I / article / an
+                            <div style="padding-left: 14px; margin-top: 4px;"><span class="line-input" style="width: 95%;"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EJERCICIO 5 -->
+                <div>
+                    <div class="ex-header">
+                        <div class="ex-num">5</div>
+                        <div class="ex-audio-icon">🔊 <span>007</span></div>
+                        <div class="ex-instruction-text">Listen to Lucas talking about his career goals and complete the sentences.</div>
+                    </div>
+                    <div style="font-size: 8pt; color: #37474f; font-weight: 500; padding-left: 12px; margin-bottom: 4px;">
+                        Lucas is in <span class="hw-cursive" style="font-size: 11pt; padding: 0 8px;">11th</span> grade.
+                    </div>
+                    <div class="numbered-list">
+                        <div class="numbered-list-item">
+                            <span>1.</span> His favorite subjects at school are science, math, and <span class="line-input" style="width: 140px;"></span>.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>2.</span> He would like to work as a software <span class="line-input" style="width: 170px;"></span>.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>3.</span> He is going to study computer engineering at <span class="line-input" style="width: 140px;"></span>.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>4.</span> He often practices coding on his <span class="line-input" style="width: 170px;"></span>.
+                        </div>
+                        <div class="numbered-list-item">
+                            <span>5.</span> He wants to publish his first mobile app in <span class="line-input" style="width: 130px;"></span>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EJERCICIO 6 -->
+                <div style="margin-top: 2px;">
+                    <div class="ex-header" style="margin-top: 2px;">
+                        <div class="ex-num">6</div>
+                        <div class="ex-tag-black" style="background-color: #bf360c;">Pairwork</div>
+                        <div class="ex-instruction-text">Which of the skills and goals interest you the most, and why? Discuss with a partner.</div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <div class="future-col-right">
+                
+                <!-- Video / Vlog Widget -->
+                <div class="video-container">
+                    <div class="video-header">Danny and Clara's vlog</div>
+                    <div class="video-body">
+                        <img src="danny_clara_vlog.png" alt="Danny and Clara's vlog">
+                        <div class="play-button">▶</div>
+                        <div class="video-overlay-text">Future plans</div>
+                    </div>
+                </div>
+
+                <!-- STEP 1 -->
+                <div>
+                    <div class="step-badge">
+                        <span class="step-text">Step</span>
+                        <span class="step-num">1</span>
+                    </div>
+                    <div class="ex-header" style="margin-top: 2px;">
+                        <div class="ex-num" style="font-size: 8.5pt;">1</div>
+                        <div class="ex-tag-black" style="background-color: #bf360c; padding: 1px 6px; font-size: 7.5pt;">Pairwork</div>
+                        <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal;">Do you spend much time thinking about your future? Discuss with a partner.</div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div>
+                    <div class="step-badge">
+                        <span class="step-text">Step</span>
+                        <span class="step-num">2</span>
+                    </div>
+                    <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px;">
+                        <div class="ex-num" style="font-size: 8.5pt;">2</div>
+                        <div class="ex-audio-icon">🔊 <span>008</span></div>
+                        <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal;">Watch the vlog and complete Danny and Clara's lists with the missing words.</div>
+                    </div>
+
+                    <!-- Goals Table -->
+                    <table class="goals-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Danny</th>
+                                <th>Clara</th>
+                                <th>You</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>One year</td>
+                                <td>Study languages<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td>Travel<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td><span class="line-input" style="width:95%; height:12px;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Five years</td>
+                                <td>Start a business<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td>Get a degree<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td><span class="line-input" style="width:95%; height:12px;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Ten years</td>
+                                <td>Buy a house<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td>Publish a book<br><span class="line-input" style="width:90%; height:12px;"></span></td>
+                                <td><span class="line-input" style="width:95%; height:12px;"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="ex-header" style="margin-top: 3px; margin-bottom: 2px;">
+                        <div class="ex-num" style="font-size: 8.5pt;">3</div>
+                        <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal;">Complete the table in exercise 2 with information about you.</div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div>
+                    <div class="step-badge">
+                        <span class="step-text">Step</span>
+                        <span class="step-num">3</span>
+                    </div>
+                    <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px;">
+                        <div class="ex-num" style="font-size: 8.5pt;">4</div>
+                        <div class="ex-tag-black" style="background-color: #bf360c; padding: 1px 6px; font-size: 7.5pt;">Pairwork</div>
+                        <div class="ex-instruction-text" style="font-size: 8pt; font-weight: normal;">Ask and answer the questions.</div>
+                    </div>
+                    <div class="numbered-list" style="padding-left: 8px; gap: 2px;">
+                        <div class="numbered-list-item" style="font-size: 7.5pt;">
+                            <span>1.</span> Compare your answers in exercise 3. Are your goals similar?
+                        </div>
+                        <div class="numbered-list-item" style="font-size: 7.5pt;">
+                            <span>2.</span> Is it important to set goals for the future? Why?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real English Box -->
+                <div class="info-box-future info-box-real-english">
+                    <div class="info-box-header">
+                        <span>💬</span> Real English
+                    </div>
+                    <div style="font-weight: bold; margin-bottom: 2px; font-size: 7.5pt; color: #5d4037;">Check the meaning of these phrases from the vlog.</div>
+                    <div style="font-style: italic; color: #5d4037; font-size: 7.5pt; line-height: 1.3;">
+                        "Who's going to go first?" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "I really don't know."<br>
+                        "That's my dream!"
+                    </div>
+                </div>
+
+                <!-- Digital Citizenship Box -->
+                <div class="info-box-future info-box-digital-citizen">
+                    <div class="info-box-header">
+                        <span>💻</span> Digital Citizenship
+                    </div>
+                    <div style="font-weight: bold; margin-bottom: 2px; font-size: 7.5pt; color: #006064;">How can these groups use the Internet to achieve their goals?</div>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px;">
+                        <span class="vocab-pill" style="padding: 1px 6px; font-size: 6.5pt; background-color: #e0f2f1; color: #004d40; border-color: #b2dfdb;">graduates</span>
+                        <span class="vocab-pill" style="padding: 1px 6px; font-size: 6.5pt; background-color: #e0f2f1; color: #004d40; border-color: #b2dfdb;">job seekers</span>
+                        <span class="vocab-pill" style="padding: 1px 6px; font-size: 6.5pt; background-color: #e0f2f1; color: #004d40; border-color: #b2dfdb;">employers</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number Footer -->
+        <div class="footer-page-num">52</div>
+
+    </div>
+
+        <!-- ================= PHYSICAL PAGE 53 (WELCOME & REVIEW) ================= -->
+        <div class="page content-page" style="padding-right: 2.2cm;">
+            
+            <!-- Welcome Header Top Bar -->
+            <div class="welcome-top-bar">
+                <div class="welcome-tab">Welcome!</div>
+            </div>
+
+            <div class="welcome-layout-grid">
+                
+                <!-- COLUMNA IZQUIERDA -->
+                <div class="welcome-col-left">
+                    
+                    <!-- SECCIÓN HOUSEWORK -->
+                    <div>
+                        <div class="welcome-section-title">housework</div>
+                        <div class="ex-header" style="margin-top: 2px;">
+                            <div class="ex-num">21</div>
+                            <div class="ex-instruction-text">Match the pictures (1–6) with the phrases.</div>
+                        </div>
+
+                        <!-- Photo Grid Chores (Sprites) -->
+                        <div class="housework-photo-grid">
+                            <div class="housework-item-container">
+                                <div class="housework-badge">1</div>
+                                <div class="housework-crop">
+                                    <img src="hw_vacuuming.png" alt="Vacuuming">
+                                </div>
+                            </div>
+                            <div class="housework-item-container">
+                                <div class="housework-badge">2</div>
+                                <div class="housework-crop">
+                                    <img src="hw_laundry.png" alt="Laundry">
+                                </div>
+                            </div>
+                            <div class="housework-item-container">
+                                <div class="housework-badge">3</div>
+                                <div class="housework-crop">
+                                    <img src="hw_dishes.png" alt="Dishes">
+                                </div>
+                            </div>
+                            <div class="housework-item-container">
+                                <div class="housework-badge">4</div>
+                                <div class="housework-crop">
+                                    <img src="hw_making_bed.png" alt="Making Bed">
+                                </div>
+                            </div>
+                            <div class="housework-item-container">
+                                <div class="housework-badge">5</div>
+                                <div class="housework-crop">
+                                    <img src="hw_clean_bathroom.png" alt="Cleaning Bathroom">
+                                </div>
+                            </div>
+                            <div class="housework-item-container">
+                                <div class="housework-badge">6</div>
+                                <div class="housework-crop">
+                                    <img src="hw_taking_trash.png" alt="Taking out trash">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phrases List -->
+                        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 4px; font-size: 7.5pt; color: #37474f; padding-left: 8px;">
+                            <div>vacuuming <span class="hw-cursive" style="font-size: 10.5pt;">1</span></div>
+                            <div>clean the bathroom <span class="line-input" style="width: 35px;"></span></div>
+                            <div>make the bed <span class="line-input" style="width: 35px;"></span></div>
+                            <div>take out the trash <span class="line-input" style="width: 35px;"></span></div>
+                            <div>do the laundry <span class="line-input" style="width: 35px;"></span></div>
+                            <div>unload the dishwasher <span class="line-input" style="width: 35px;"></span></div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN HAVE TO / DON'T HAVE TO -->
+                    <div style="margin-top: 2px;">
+                        <div class="welcome-section-title">have to / don't have to</div>
+                        <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px;">
+                            <div class="ex-num">22</div>
+                            <div class="ex-instruction-text">Look at the chart. Complete the sentences with the correct form of <i>have to</i> or <i>don't have to</i>.</div>
+                        </div>
+
+                        <!-- Chores Table -->
+                        <table class="housework-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Mom</th>
+                                    <th>Dad</th>
+                                    <th>Kelly</th>
+                                    <th>Luke</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>clean the bedrooms</td>
+                                    <td class="handwritten">Saturday</td>
+                                    <td></td>
+                                    <td class="handwritten">Monday</td>
+                                    <td class="handwritten">Wednesday</td>
+                                </tr>
+                                <tr>
+                                    <td>do the dishes</td>
+                                    <td class="handwritten">Wednesday, Thursday</td>
+                                    <td class="handwritten">Friday, Saturday, Sunday</td>
+                                    <td class="handwritten">Tuesday</td>
+                                    <td class="handwritten">Monday</td>
+                                </tr>
+                                <tr>
+                                    <td>feed the dog</td>
+                                    <td></td>
+                                    <td class="handwritten">every day</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>take out the trash</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="handwritten">Monday</td>
+                                    <td class="handwritten">Friday</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Sentences completing -->
+                        <div style="font-size: 7.5pt; color: #37474f; font-style: italic; padding-left: 8px; margin-top: 6px; margin-bottom: 2px;">
+                            Dad <span class="hw-cursive" style="font-size: 10pt;">doesn't have to</span> clean the bedrooms on Monday.
+                        </div>
+                        <div class="numbered-list" style="gap: 8px; padding-left: 6px;">
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>1.</span> Luke <span class="line-input" style="width: 110px;"></span> do the dishes on Monday.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>2.</span> Mom <span class="line-input" style="width: 110px;"></span> feed the dog.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>3.</span> Luke and Kelly <span class="line-input" style="width: 120px;"></span> take out the trash.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>4.</span> Mom and Dad <span class="line-input" style="width: 120px;"></span> take out the trash.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; line-height: 1.3;">
+                                <span>5.</span> Does Kelly have to clean the bedrooms on Friday? <span class="line-input" style="width: 50px;"></span>, she <span class="line-input" style="width: 50px;"></span>.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; line-height: 1.3;">
+                                <span>6.</span> Do Mom, Dad, Kelly, and Luke have to do the dishes? <span class="line-input" style="width: 50px;"></span>, they <span class="line-input" style="width: 50px;"></span>.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- COLUMNA DERECHA -->
+                <div class="welcome-col-right">
+                    
+                    <!-- SECCIÓN MUST / MUSTN'T -->
+                    <div>
+                        <div class="welcome-section-title">must / mustn't</div>
+                        <div class="ex-header" style="margin-top: 2px;">
+                            <div class="ex-num">23</div>
+                            <div class="ex-instruction-text">Read the first sentence. Then complete the second sentence with <i>must</i> or <i>mustn't</i>.</div>
+                        </div>
+                        
+                        <div style="font-size: 7.5pt; color: #546e7a; font-style: italic; padding-left: 8px; margin-bottom: 4px; line-height: 1.3;">
+                            "Take your feet off the table, Zara! That isn't polite."<br>
+                            Zara <span class="hw-cursive" style="font-size: 10pt;">mustn't</span> put her feet on the table.
+                        </div>
+
+                        <div class="numbered-list" style="gap: 12px; padding-left: 6px;">
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>1.</span> "Don't forget your homework."<br>
+                                The students <span class="line-input" style="width: 110px;"></span> forget their homework.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>2.</span> "Remember to take your umbrella."<br>
+                                You <span class="line-input" style="width: 110px;"></span> remember to bring your umbrella.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>3.</span> "Don't eat food on the bus."<br>
+                                You <span class="line-input" style="width: 110px;"></span> eat food on the bus.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>4.</span> "Tom, no excuses. Clean your room tomorrow!"<br>
+                                Tom <span class="line-input" style="width: 110px;"></span> clean his room tomorrow.
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt;">
+                                <span>5.</span> "It's very important that we wash our hands before we eat."<br>
+                                We <span class="line-input" style="width: 110px;"></span> wash our hands before we eat.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN MOVIE TYPES -->
+                    <div style="margin-top: 2px;">
+                        <div class="welcome-section-title">movie types</div>
+                        <div class="ex-header" style="margin-top: 2px; margin-bottom: 2px;">
+                            <div class="ex-num">24</div>
+                            <div class="ex-instruction-text">Complete the movie types with the missing letters. Then match the movies (1–6) to the pictures (a–f).</div>
+                        </div>
+
+                        <!-- List of Movies (Arriba) -->
+                        <div class="numbered-list" style="gap: 8px; padding-left: 4px; margin-bottom: 12px; width: 100%;">
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>1.</span> h <span class="hw-cursive" style="font-size: 9.5pt; text-decoration: underline;">o</span> r r <span class="hw-cursive" style="font-size: 9.5pt; text-decoration: underline;">o</span> r
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 6px; font-weight: bold; background-color: #eceff1; font-size: 7.5pt;" class="hw-cursive">c</span>
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>2.</span> s c <span class="line-input" style="width: 12px; height: 10px;"></span> - <span class="line-input" style="width: 12px; height: 10px;"></span> i
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 8px; background-color: #fff; width: 8px; height: 12px;"></span>
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>3.</span> m u <span class="line-input" style="width: 12px; height: 10px;"></span> i <span class="line-input" style="width: 12px; height: 10px;"></span> a l
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 8px; background-color: #fff; width: 8px; height: 12px;"></span>
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>4.</span> r <span class="line-input" style="width: 12px; height: 10px;"></span> m <span class="line-input" style="width: 12px; height: 10px;"></span> c <span class="line-input" style="width: 12px; height: 10px;"></span>
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 8px; background-color: #fff; width: 8px; height: 12px;"></span>
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>5.</span> f <span class="line-input" style="width: 12px; height: 10px;"></span> n t a <span class="line-input" style="width: 12px; height: 10px;"></span> y
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 8px; background-color: #fff; width: 8px; height: 12px;"></span>
+                            </div>
+                            <div class="numbered-list-item" style="font-size: 7.5pt; justify-content: space-between; display: flex; align-items: center; width: 90%;">
+                                <span>6.</span> c <span class="line-input" style="width: 12px; height: 10px;"></span> <span class="line-input" style="width: 12px; height: 10px;"></span> e <span class="line-input" style="width: 12px; height: 10px;"></span> y
+                                <span style="border: 1.5px solid #263238; border-radius: 4px; padding: 1px 8px; background-color: #fff; width: 8px; height: 12px;"></span>
+                            </div>
+                        </div>
+     
+                        <!-- Pics Grid (Abajo, 2 columnas) -->
+                        <div class="movie-pics-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: fit-content; margin: 10px auto 0 auto;">
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">a</div>
+                                <div class="movie-crop">
+                                    <img src="movie_scifi.png" alt="Sci-fi">
+                                </div>
+                            </div>
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">b</div>
+                                <div class="movie-crop">
+                                    <img src="movie_comedy.png" alt="Comedy">
+                                </div>
+                            </div>
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">c</div>
+                                <div class="movie-crop">
+                                    <img src="movie_horror.png" alt="Horror">
+                                </div>
+                            </div>
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">d</div>
+                                <div class="movie-crop">
+                                    <img src="movie_musical.png" alt="Musical">
+                                </div>
+                            </div>
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">e</div>
+                                <div class="movie-crop">
+                                    <img src="movie_romance.png" alt="Romance">
+                                </div>
+                            </div>
+                            <div class="movie-pic-item">
+                                <div class="movie-pic-badge">f</div>
+                                <div class="movie-crop">
+                                    <img src="movie_fantasy.png" alt="Fantasy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <!-- Page Number Footer -->
+            <div class="footer-page-num">53</div>
+    
+        </div>
+    
+    </body>
+</html>

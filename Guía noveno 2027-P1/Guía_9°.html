@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Soporte para ecuaciones en LaTeX con MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&family=Caveat:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Matemáticas Noveno: Álgebra y Números Complejos</title>
+    <style>
+        /* --- 1. Formato General del Documento --- */
+        @page {
+            size: 22cm 28cm;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Comic Neue', 'Arial', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            background-color: #faf9f5;
+            background-image: radial-gradient(#d3d3d3 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cada página física */
+        .page {
+            width: 22cm;
+            height: 28cm;
+            padding: 1.0cm 1.4cm 0.8cm 1.4cm;
+            margin: 25px auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Título principal tipo Banner dibujado a mano */
+        .main-title-banner {
+            background-color: #0d4a8a;
+            color: white;
+            text-align: center;
+            padding: 8px 30px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            border: 3px solid #002855;
+            box-shadow: 4px 4px 0px #002855;
+            margin: 5px auto 10px auto;
+            width: fit-content;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenido principal interno de la página */
+        .page-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Separación de Párrafos y Sangría */
+        p {
+            margin-top: 0;
+            margin-bottom: 8pt;
+            text-align: justify;
+            text-indent: 0;
+            font-size: 10.5pt;
+            line-height: 1.5;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: #1a6bba;
+        }
+
+        .emphasis {
+            font-style: italic;
+            color: #e91e63;
+        }
+
+        /* --- 2. Elementos Destacados e Infográficos --- */
+        .yellow-dashed-box {
+            background-color: #FFFDE7;
+            border: 2px dashed #FBC02D;
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+            margin: 4px 0;
+        }
+
+        .green-info-box {
+            background-color: #F1F8E9;
+            border: 2px solid #81C784;
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin: 4px 0;
+            position: relative;
+        }
+
+        .green-info-title {
+            color: #2E7D32;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 9.5pt;
+            margin-bottom: 4px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .pink-box {
+            background-color: #FCE4EC;
+            border: 2px solid #F06292;
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .sticky-note {
+            background-color: #FFF9C4;
+            border-left: 5px solid #FBC02D;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+            padding: 6px 10px;
+            border-radius: 4px 10px 10px 4px;
+        }
+
+        /* --- 3. Cuadros de Estrategia Operativa --- */
+        .strategy-section {
+            background-color: #FFF;
+            border: 2px solid #7E57C2;
+            border-radius: 12px;
+            margin: 4px 0;
+            overflow: hidden;
+            box-shadow: 2px 2px 8px rgba(126, 87, 194, 0.08);
+        }
+
+        .strategy-title-banner {
+            background-color: #7E57C2;
+            color: white;
+            text-align: center;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            padding: 5px;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            padding: 4px 6px;
+        }
+
+        .strategy-col {
+            border-right: 1.5px dashed #D1C4E9;
+            padding: 0 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .strategy-col:last-child {
+            border-right: none;
+        }
+
+        .strategy-icon-container {
+            margin-bottom: 3px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- 4. Caja de Aplicación en la Vida Real --- */
+        .reallife-section {
+            background: linear-gradient(135deg, #FFFDE7, #FFF3CD);
+            border: 2px solid #FFB300;
+            border-radius: 12px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 2px 2px 6px rgba(255, 179, 0, 0.08);
+        }
+
+        .reallife-icon-container {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- 5. Títulos de Banners inferiores --- */
+        .green-banner-title {
+            background-color: #2E7D32;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px 8px 20px 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 9.5pt;
+            font-weight: bold;
+            width: fit-content;
+            margin-bottom: 6px;
+            box-shadow: 1px 1px 3px rgba(46, 125, 50, 0.15);
+        }
+
+        .blue-banner-title {
+            background-color: #1A6BBA;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px 20px 8px 20px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 9.5pt;
+            font-weight: bold;
+            width: fit-content;
+            margin-bottom: 6px;
+            box-shadow: 1px 1px 3px rgba(26, 107, 186, 0.15);
+        }
+
+        .num-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 7.5pt;
+            flex-shrink: 0;
+        }
+
+        .circle-green {
+            background-color: #2E7D32;
+        }
+
+        .circle-blue {
+            background-color: #1A6BBA;
+        }
+
+        .circle-orange {
+            background-color: #EF6C00;
+        }
+
+        .mini-formula {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 2px 8px;
+            margin-top: 3px;
+            font-family: monospace;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .dashed-caption-box {
+            font-size: 7.5pt;
+            color: #555;
+            text-align: justify;
+            line-height: 1.25;
+            margin-top: 3px;
+            border: 1.5px dashed #B3E5FC;
+            background-color: #E1F5FE;
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        /* --- 6. Footer checklist "Para Recordar" --- */
+        .remember-footer {
+            border: 2px solid #90CAF9;
+            background-color: #E3F2FD;
+            border-radius: 12px;
+            padding: 6px 12px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            box-shadow: 2px 2px 6px rgba(144, 202, 249, 0.1);
+        }
+
+        .remember-title-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .remember-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            color: #0D47A1;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+        }
+
+        .remember-items-container {
+            display: flex;
+            gap: 15px;
+            flex-grow: 1;
+            justify-content: space-around;
+        }
+
+        .remember-item {
+            font-size: 8pt;
+            color: #1565C0;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        /* Reglas de impresión */
+        @media print {
+            body {
+                background-color: transparent;
+                background-image: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                border-radius: 0;
+                border: none;
+            }
+        }
+
+        /* --- 7. Estilos de Talleres --- */
+        .taller-header {
+            background-color: #673ab7;
+            color: white;
+            text-align: center;
+            padding: 8px 30px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 13pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            border: 3px solid #311b92;
+            box-shadow: 4px 4px 0px #311b92;
+            margin: 5px auto 10px auto;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .taller-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+            margin-bottom: 6px;
+        }
+
+        .taller-item,
+        .taller-item-icfes {
+            background: #fafafc;
+            border: 1px solid #e3e4f3;
+            border-left: 3px solid #673ab7;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 9pt;
+            line-height: 1.35;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.03);
+            text-align: justify;
+        }
+
+        .taller-item-icfes {
+            background: #f4fbfd;
+            border-color: #cbeaf0;
+            border-left-color: #009688;
+        }
+
+        .taller-tag {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 7.5pt;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-right: 6px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .tag-investigar {
+            background-color: #e91e63;
+        }
+
+        .tag-analizar {
+            background-color: #2196f3;
+        }
+
+        .tag-inferir {
+            background-color: #ff9800;
+        }
+
+        .tag-deducir {
+            background-color: #9c27b0;
+        }
+
+        .tag-argumentar {
+            background-color: #f44336;
+        }
+
+        .tag-justificar {
+            background-color: #3f51b5;
+        }
+
+        .tag-experimentar {
+            background-color: #4caf50;
+        }
+
+        .tag-comprobar {
+            background-color: #8bc34a;
+        }
+
+        .tag-construir {
+            background-color: #00bcd4;
+        }
+
+        .tag-disenar {
+            background-color: #e040fb;
+        }
+
+        .tag-sintetizar {
+            background-color: #795548;
+        }
+
+        .tag-relacionar {
+            background-color: #607d8b;
+        }
+
+        .tag-integrar {
+            background-color: #ff5722;
+        }
+
+        .tag-icfes {
+            background-color: #009688;
+        }
+
+        .tag-calcular {
+            background-color: #0d47a1;
+        }
+
+        .icfes-options {
+            display: flex;
+            justify-content: space-around;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 8px 10px;
+            background-color: transparent;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .icfes-opt {
+            font-size: 9.5pt;
+            color: #333;
+            font-weight: 600;
+            background-color: #f0f7f9;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid #cbeaf0;
+            box-shadow: 2px 2px 5px rgba(0, 150, 136, 0.1);
+        }
+
+        /* --- 8. Número de Página --- */
+        .page-number {
+            position: absolute;
+            bottom: 14px;
+            right: 0;
+            background-color: #0d4a8a;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 9pt;
+            font-weight: bold;
+            width: 26px;
+            height: 26px;
+            border-radius: 50% 0 0 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.18);
+            z-index: 10;
+        }
+
+        .page-brand {
+            position: absolute;
+            top: 20px;
+            left: 35px;
+            font-family: 'Caveat', cursive;
+            font-size: 26pt;
+            color: #ff4081;
+            /* Vivid pink color */
+            transform: rotate(-10deg);
+            font-weight: bold;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.9;
+            text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px #fff;
+        }
+
+        .page-sidebar {
+            position: absolute;
+            right: 0px;
+            /* Inside the page to prevent overlapping and clipping */
+            top: 25%;
+            /* Higher up */
+            transform: translateY(-50%);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #ffffff;
+            /* White text */
+            background-color: #ff4081;
+            /* Highlighting color matching INAS */
+            padding: 16px 6px;
+            border-radius: 8px 0 0 8px;
+            /* Rounded corners on the inside, flat on the edge */
+            box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.1);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: uppercase;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= PORTADA ================= -->
+    <div class="page cover-page"
+        style="justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); border: none;">
+        <div
+            style="position: absolute; top: 40px; left: 40px; font-family: 'Caveat', cursive; font-size: 32pt; color: #ff4081; transform: rotate(-10deg); font-weight: bold; text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px #fff;">
+            INAS</div>
+        <div
+            style="font-family: 'Fredoka', sans-serif; font-size: 16pt; color: #673ab7; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;">
+            Matemáticas Noveno Grado</div>
+
+        <img src="portada.png" alt="Ilustración Álgebra Avanzada"
+            style="width: 80%; max-width: 480px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin-bottom: 30px; object-fit: cover;">
+
+        <div
+            style="background-color: #0d4a8a; color: white; padding: 15px 40px; font-family: 'Fredoka', sans-serif; font-size: 24pt; font-weight: bold; border-radius: 50px; border: 4px solid #002855; box-shadow: 6px 6px 0px #002855; text-transform: uppercase;">
+            Álgebra y Números Complejos</div>
+
+        <div
+            style="margin-top: 30px; font-family: 'Quicksand', sans-serif; font-size: 11.5pt; color: #555; max-width: 80%; font-weight: 600; line-height: 1.5;">
+            Capítulo completo: Propiedades algebraicas de la potenciación y radicación, y el universo de los números complejos.</div>
+    </div>
+
+    <!-- ================= PÁGINA 1: POTENCIACIÓN ALGEBRAICA ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">1</div>
+        <!-- Main title container with doodles -->
+        <div style="position: relative; width: 100%; text-align: center;">
+            <svg style="position: absolute; left: 8%; top: 3px; width: 22px; height: 22px; fill: #FBC02D;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg style="position: absolute; left: 5%; top: 22px; width: 14px; height: 14px; fill: #FBC02D; opacity: 0.7;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg style="position: absolute; right: 8%; top: 10px; width: 24px; height: 24px; transform: rotate(15deg);"
+                viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18.4 2.6a2.1 2.1 0 1 1 3 3L6.8 20.2l-4.7 1 1-4.7z" />
+                <path d="m15 5 3 3" />
+            </svg>
+
+            <div class="main-title-banner">POTENCIACIÓN CON EXPRESIONES ALGEBRAICAS</div>
+        </div>
+
+        <div class="page-content">
+            <!-- First Grid: Intro text, formula & terms -->
+            <div
+                style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; margin-bottom: 4px; align-items: start;">
+                <div>
+                    <p style="margin-bottom: 4px;">En el álgebra de noveno grado, elevamos el concepto de <span class="keyword">potenciación</span>. Ya no solo multiplicamos números, sino <strong>variables (letras)</strong> que representan valores desconocidos. Las leyes de los exponentes se aplican de la misma manera a las expresiones algebraicas, permitiéndonos simplificar monomios y polinomios complejos.</p>
+
+                    <div class="yellow-dashed-box" style="padding: 6px 10px;">
+                        <div style="font-size: 12pt; font-weight: bold; margin: 2px 0;">$(a^m \cdot b^n)^p = a^{m \cdot p} \cdot b^{n \cdot p}$</div>
+                        <div style="font-size: 7.5pt; color: #555; font-weight: 600;">Potencia de un producto algebraico</div>
+                    </div>
+                </div>
+
+                <div class="green-info-box" style="padding: 6px 10px;">
+                    <div class="green-info-title">LEYES FUNDAMENTALES</div>
+                    <ul
+                        style="margin: 0; padding-left: 14px; font-size: 8pt; list-style-type: disc; line-height: 1.3;">
+                        <li><strong>Producto:</strong> $x^a \cdot x^b = x^{a+b}$</li>
+                        <li><strong>Cociente:</strong> $\frac{x^a}{x^b} = x^{a-b}$</li>
+                        <li><strong>Potencia Negativa:</strong> $x^{-a} = \frac{1}{x^a}$</li>
+                        <li><strong>Exponente Cero:</strong> $x^0 = 1$ ($x \neq 0$)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Second section: Application to Monomials -->
+            <p style="margin-bottom: 4px;">Al operar con monomios, recuerda la regla de oro: <strong>operar coeficientes con coeficientes y variables idénticas con variables idénticas</strong>. Veamos cómo se simplifican expresiones con múltiples variables.</p>
+
+            <div
+                style="display: grid; grid-template-columns: 0.95fr 1.2fr 0.85fr; gap: 10px; margin-bottom: 4px; align-items: center;">
+                <div class="pink-box" style="padding: 6px 8px;">
+                    <div
+                        style="font-size: 10pt; font-weight: bold; font-family: 'Fredoka', sans-serif;">
+                        $\frac{12x^5y^3}{4x^2y^6} = 3x^{5-2}y^{3-6}$</div>
+                    <div style="font-size: 7.5pt; color: #888; font-weight: 600;">Paso intermedio</div>
+                </div>
+
+                <div
+                    style="display: flex; align-items: center; gap: 6px; font-size: 7.5pt; background: #e0f2f1; border-radius: 8px; padding: 5px; border: 1.5px solid #b2dfdb;">
+                    <span style="font-size: 14pt; color: #00796b; line-height: 1;">➡️</span>
+                    <p
+                        style="margin: 0; text-indent: 0; line-height: 1.25; color: #004d40; font-size: 7.5pt;">
+                        El exponente de $y$ resulta negativo, por lo que lo enviamos al denominador.</p>
+                </div>
+
+                <div class="sticky-note" style="padding: 4px 8px;">
+                    <div
+                        style="font-weight: bold; font-size: 7.5pt; color: #E65100; margin-bottom: 1px; border-bottom: 1px solid #FFE082; font-family: 'Fredoka', sans-serif;">
+                        Resultado Final:</div>
+                    <div style="font-size: 11pt; font-weight: bold; text-align: center; margin-top: 4px;">$\frac{3x^3}{y^3}$</div>
+                </div>
+            </div>
+
+            <!-- Strategy box (Purple header, 4 columns) -->
+            <div class="strategy-section">
+                <div class="strategy-title-banner">
+                    🧠 ESTRATEGIA OPERATIVA: SIMPLIFICACIÓN ALGEBRAICA
+                </div>
+                <div class="strategy-grid">
+                    <div class="strategy-col">
+                        <div class="strategy-icon-container">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#1A6BBA"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <div
+                            style="font-weight: bold; color: #1A6BBA; font-size: 8pt; margin-bottom: 2px;">
+                            1. ELIMINAR<br><span style="font-weight: normal; color: #555;">paréntesis</span></div>
+                        <p style="font-size: 7.5pt; margin: 0; text-align: center; line-height: 1.25;">
+                            Aplica la propiedad "potencia de una potencia" o "potencia de un producto" para deshacer los paréntesis exteriores.</p>
+                    </div>
+                    <div class="strategy-col">
+                        <div class="strategy-icon-container">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="#2E7D32">
+                                <path
+                                    d="M20 12c0-1.1-.9-2-2-2V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S7 3.34 7 5H4c-1.1 0-2 .9-2 2v3c1.66 0 3 1.34 3 3s-1.34 3-3 3v3c0 1.1.9 2 2 2h3c0-1.66 1.34-3 3-3s3 1.34 3 3h3c1.1 0 2-.9 2-2v-3c1.66 0 3-1.34 3-3s-1.34-3-3-3z" />
+                            </svg>
+                        </div>
+                        <div
+                            style="font-weight: bold; color: #2E7D32; font-size: 8pt; margin-bottom: 2px;">
+                            2. AGRUPAR<br><span
+                                style="font-weight: normal; color: #555;">bases idénticas</span></div>
+                        <p style="font-size: 7.5pt; margin: 0; text-align: center; line-height: 1.25;">
+                            Multiplica los coeficientes numéricos entre sí y junta las variables iguales (las $x$ con las $x$, etc.).</p>
+                    </div>
+                    <div class="strategy-col">
+                        <div class="strategy-icon-container">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#EF6C00"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                <line x1="8" y1="6" x2="16" y2="6"></line>
+                                <line x1="16" y1="14" x2="16" y2="18"></line>
+                                <line x1="12" y1="10" x2="12" y2="10.01"></line>
+                                <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                                <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                            </svg>
+                        </div>
+                        <div
+                            style="font-weight: bold; color: #EF6C00; font-size: 8pt; margin-bottom: 2px;">
+                            3. OPERAR<br><span
+                                style="font-weight: normal; color: #555;">exponentes</span></div>
+                        <p style="font-size: 7.5pt; margin: 0; text-align: center; line-height: 1.25;">
+                            Suma los exponentes si están multiplicando o réstalos si se están dividiendo.</p>
+                    </div>
+                    <div class="strategy-col">
+                        <div class="strategy-icon-container">
+                            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#c2185b"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="12" r="6"></circle>
+                                <circle cx="12" cy="12" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div
+                            style="font-weight: bold; color: #c2185b; font-size: 8pt; margin-bottom: 2px;">
+                            4. INVERTIR<br><span style="font-weight: normal; color: #555;">negativos</span></div>
+                        <p style="font-size: 7.5pt; margin: 0; text-align: center; line-height: 1.25;">
+                            Expresa el resultado final usando solo exponentes positivos, invirtiendo las bases con exponentes negativos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Life Real box -->
+            <div class="reallife-section">
+                <div class="reallife-icon-container">
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#E65100"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <div
+                        style="font-weight: bold; color: #E65100; font-size: 9pt; margin-bottom: 1px; font-family: 'Fredoka', sans-serif;">
+                        🕋 ¿DÓNDE SE APLICA EN LA VIDA REAL?</div>
+                    <p style="margin: 0; font-size: 8.5pt; line-height: 1.3; color: #5c3b00;">El diseño de empaques industriales utiliza potenciación algebraica. Si las dimensiones de una caja están dadas por monomios (ej. base $3x$, ancho $2xy$, altura $x^2$), su volumen será el producto de ellos: $V = (3x)(2xy)(x^2) = 6x^4y$. Esto permite a los ingenieros calcular el espacio exacto sin importar el valor que tome $x$ o $y$.</p>
+                </div>
+            </div>
+
+            <!-- Bottom columns -->
+            <div
+                style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 15px; margin-top: 4px;">
+                <!-- Left: Ejemplos -->
+                <div>
+                    <div class="green-banner-title">EJEMPLO RESUELTO</div>
+                    <p style="font-size: 8pt; line-height: 1.3; margin-bottom: 4px;"><strong>Problema:</strong> Simplifica la siguiente expresión matemática: $\left(\frac{2a^3b^{-2}}{3a^{-1}b^4}\right)^2$</p>
+                    <p style="font-size: 7.5pt; line-height: 1.25; margin-bottom: 0;">
+                        <strong>1. Operamos dentro del paréntesis:</strong>
+                        <br>&nbsp;&nbsp;Coeficientes: $\frac{2}{3}$ (no se simplifica)
+                        <br>&nbsp;&nbsp;Variable $a$: $a^{3 - (-1)} = a^4$
+                        <br>&nbsp;&nbsp;Variable $b$: $b^{-2 - 4} = b^{-6}$
+                        <br>&nbsp;&nbsp;Expresión interna: $\frac{2a^4 b^{-6}}{3}$
+                        <br><strong>2. Aplicamos la potencia exterior ($^2$):</strong>
+                        <br>&nbsp;&nbsp;Coeficientes: $\left(\frac{2}{3}\right)^2 = \frac{4}{9}$
+                        <br>&nbsp;&nbsp;Variables: $(a^4)^2 = a^8$; $(b^{-6})^2 = b^{-12}$
+                        <br><strong>3. Exponentes positivos:</strong>
+                        <br>&nbsp;&nbsp;$\frac{4a^8}{9b^{12}}$
+                    </p>
+                </div>
+
+                <!-- Right: Chart -->
+                <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+                    <div class="blue-banner-title" style="margin-bottom: 4px;">VISUALIZACIÓN GEOMÉTRICA</div>
+                    <div
+                        style="background: white; border: 1.5px solid #e0e0e0; border-radius: 8px; padding: 4px; text-align: center; box-shadow: 1px 1px 4px rgba(0,0,0,0.03);">
+                        <img src="cubo_volumen.jpg" alt="Cubo volumen algebraico" style="width: 80%; max-width: 115px; display: block; margin: 4px auto; border-radius: 6px; box-shadow: 2px 2px 6px rgba(0,0,0,0.1);">
+                        <div style="font-family: 'Fredoka', sans-serif; font-size: 8.5pt; color: #0D47A1; margin-top: 6px; font-weight: bold;">Lado = $x^2$</div>
+                        <div style="font-family: 'Fredoka', sans-serif; font-size: 9pt; color: #1A6BBA; margin-top: 2px; font-weight: bold;">Volumen = $(x^2)^3$</div>
+                        <div style="font-family: 'Fredoka', sans-serif; font-size: 10pt; color: #E65100; margin-top: 2px; font-weight: bold;">V = $x^6$</div>
+                        <div class="dashed-caption-box">
+                            <strong>Figura 1.1a</strong> Geométricamente, elevar $x^2$ al cubo implica calcular el volumen de un cubo cuyo lado mide $x^2$. Los exponentes se multiplican.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footerchecklist -->
+        <div class="remember-footer">
+            <div class="remember-title-container">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0D47A1" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div class="remember-title">PARA RECORDAR</div>
+            </div>
+            <div class="remember-items-container">
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Se operan variables iguales con variables iguales.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> La potencia de un producto se distribuye a CADA factor.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Un exponente negativo no cambia el signo de la base.</div>
+            </div>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7E57C2" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                    d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2z">
+                </path>
+                <path
+                    d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2z">
+                </path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 2: TALLER POTENCIACIÓN ALGEBRAICA ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">2</div>
+        <div class="taller-header">
+            📝 TALLER 1: POTENCIACIÓN CON EXPRESIONES ALGEBRAICAS
+        </div>
+        <div class="taller-container">
+            <div class="taller-item" style="display: block;">
+                <strong>1.</strong> <span class="taller-tag tag-calcular">Calcular</span> <strong>Simplifique las siguientes expresiones y exprese el resultado con exponentes positivos:</strong>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; margin-top: 8px; padding-left: 15px; font-size: 8.5pt;">
+                    <div><strong>a)</strong> $x^4 \cdot x^5 \cdot x^{-2}$</div>
+                    <div><strong>b)</strong> $(2m^3 n^4)^3$</div>
+                    <div><strong>c)</strong> $\frac{15a^6 b^2}{3a^2 b^5}$</div>
+                    <div><strong>d)</strong> $\left(\frac{x^{-3} y^2}{x^2 y^{-1}}\right)^2$</div>
+                    <div><strong>e)</strong> $(-3p^2 q^3)^2 \cdot (p^4 q)^{-1}$</div>
+                    <div><strong>f)</strong> $\frac{(2x^2)^3 \cdot (3x^4)^2}{6x^{10}}$</div>
+                </div>
+            </div>
+            <div class="taller-item">
+                <strong>2.</strong> <span class="taller-tag tag-analizar">Analizar</span> ¿Qué error cometió un estudiante al simplificar la expresión $(x+y)^2$ y decir que es igual a $x^2 + y^2$? Explica con propiedades.
+            </div>
+            <div class="taller-item">
+                <strong>3.</strong> <span class="taller-tag tag-deducir">Deducir</span> Si el área de un rectángulo es $24x^5y^3$ y su base mide $6x^2y$, deduce la expresión algebraica que representa su altura.
+            </div>
+            <div class="taller-item">
+                <strong>4.</strong> <span class="taller-tag tag-sintetizar">Sintetizar</span> Escribe una expresión algebraica que, al ser dividida entre $4a^3b^{-2}$, dé como resultado $2a^2b^5$.
+            </div>
+            <div class="taller-item">
+                <strong>5.</strong> <span class="taller-tag tag-justificar">Justificar</span> Justifica matemáticamente por qué $\left(\frac{x}{y}\right)^{-n} = \left(\frac{y}{x}\right)^n$.
+            </div>
+            
+            <!-- ICFES MULTIPLE CHOICE -->
+            <div class="taller-item-icfes">
+                <strong>6.</strong> <span class="taller-tag tag-icfes">ICFES</span> La simplificación correcta de la expresión $\frac{(3x^2y^3)^2}{9xy^4}$ es:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $x^3 y^2$</div>
+                    <div class="icfes-opt">B) $3x^3 y^2$</div>
+                    <div class="icfes-opt">C) $x^4 y$</div>
+                    <div class="icfes-opt">D) $y^2 / x^3$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>7.</strong> <span class="taller-tag tag-icfes">ICFES</span> Al resolver $\left(-2a^3 b^{-1}\right)^3$, el resultado es:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $-6a^6 b^{-3}$</div>
+                    <div class="icfes-opt">B) $-8a^9 / b^3$</div>
+                    <div class="icfes-opt">C) $8a^9 / b^3$</div>
+                    <div class="icfes-opt">D) $-8a^6 b^{-3}$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>8.</strong> <span class="taller-tag tag-icfes">ICFES</span> Si el volumen de un prisma es $V = 16x^6 y^4$ y el área de su base es $A = 4x^2 y^3$, ¿cuál es su altura?
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $4x^3 y$</div>
+                    <div class="icfes-opt">B) $12x^4 y$</div>
+                    <div class="icfes-opt">C) $4x^4 y$</div>
+                    <div class="icfes-opt">D) $4x^4 y^2$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 3: RADICACIÓN ALGEBRAICA ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">3</div>
+        
+        <div style="position: relative; width: 100%; text-align: center;">
+            <svg style="position: absolute; left: 8%; top: 3px; width: 22px; height: 22px; fill: #FBC02D;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg style="position: absolute; left: 5%; top: 22px; width: 14px; height: 14px; fill: #FBC02D; opacity: 0.7;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            
+            <div class="main-title-banner">RADICACIÓN CON EXPRESIONES ALGEBRAICAS</div>
+        </div>
+
+        <div class="page-content">
+            <div
+                style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 12px; margin-bottom: 4px; align-items: start;">
+                <div>
+                    <p style="margin-bottom: 4px;">La <span class="keyword">radicación algebraica</span> consiste en extraer raíces a monomios y polinomios. La forma más eficiente de realizarlo es a través de los exponentes fraccionarios, transformando la radicación en una operación de división de exponentes.</p>
+
+                    <div class="yellow-dashed-box" style="padding: 6px 10px;">
+                        <div style="font-size: 11pt; font-weight: bold; margin: 2px 0;">$\sqrt[n]{x^m} = x^{\frac{m}{n}}$</div>
+                        <div style="font-size: 7.5pt; color: #555; font-weight: 600;">El índice pasa a ser el denominador del exponente.</div>
+                    </div>
+                </div>
+
+                <div class="green-info-box" style="padding: 6px 10px;">
+                    <div class="green-info-title">EXTRACCIÓN EXACTA</div>
+                    <p style="margin: 0; font-size: 7.5pt; line-height: 1.3; color: #2E7D32;">
+                        Si el exponente de la variable es divisible por el índice de la raíz, la variable sale de la raíz exactamente:
+                    </p>
+                    <div style="font-size: 11pt; font-weight: bold; text-align: center; margin: 4px 0; font-family: 'Fredoka', sans-serif;">$\sqrt[3]{x^6} = x^{\frac{6}{3}} = x^2$</div>
+                </div>
+            </div>
+
+            <!-- Racionalización -->
+            <p style="margin-bottom: 4px;">En álgebra, con frecuencia debemos <strong>racionalizar</strong>; es decir, eliminar las raíces del denominador de una fracción para simplificar cálculos posteriores.</p>
+
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 4px; align-items: start;">
+                <!-- Monomios -->
+                <div class="pink-box" style="padding: 6px 8px;">
+                    <div style="font-size: 8.5pt; font-weight: bold; font-family: 'Fredoka', sans-serif; color: #C2185B;">Racionalizar Monomios</div>
+                    <p style="margin: 2px 0; font-size: 7.5pt; line-height: 1.25; color: #880E4F;">Multiplicamos numerador y denominador por la misma raíz (completando el exponente al índice).</p>
+                    <div style="font-size: 9pt; font-weight: bold; text-align: center; margin-top: 4px; color: #333;">$\frac{2}{\sqrt{x}} \cdot \frac{\sqrt{x}}{\sqrt{x}} = \frac{2\sqrt{x}}{x}$</div>
+                </div>
+                
+                <!-- Binomios Conjugados -->
+                <div class="reallife-section" style="margin: 0; padding: 6px 8px; border-left: 3px solid #1A6BBA; background: #E3F2FD; box-shadow: none;">
+                    <div style="font-size: 8.5pt; font-weight: bold; font-family: 'Fredoka', sans-serif; color: #0D47A1;">Binomio Conjugado</div>
+                    <p style="margin: 2px 0; font-size: 7.5pt; line-height: 1.25; color: #1565C0;">Si el denominador es $a + \sqrt{b}$, multiplicamos por su conjugado $a - \sqrt{b}$.</p>
+                    <div style="font-size: 9pt; font-weight: bold; text-align: center; margin-top: 4px; color: #333;">$(a+\sqrt{b})(a-\sqrt{b}) = a^2 - (\sqrt{b})^2 = a^2 - b$</div>
+                </div>
+            </div>
+
+            <!-- EJEMPLO RESUELTO RACIONALIZACIÓN -->
+            <div class="green-banner-title" style="margin-bottom: 4px;">EJEMPLO: RACIONALIZACIÓN CON CONJUGADO</div>
+            <div style="background: white; border: 1.5px solid #e0e0e0; border-radius: 8px; padding: 10px; margin-bottom: 8px; box-shadow: 1px 1px 4px rgba(0,0,0,0.03);">
+                <p style="margin: 0 0 5px 0; font-size: 8pt; font-weight: bold;">Racionalizar: $\frac{3}{\sqrt{x} + \sqrt{y}}$</p>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 40px; font-size: 9pt;">
+                    <div style="text-align: center;">
+                        <span style="font-size: 7.5pt; color: #888;">Expresión Original</span><br>
+                        $\frac{3}{\sqrt{x} + \sqrt{y}}$
+                    </div>
+                    <div style="color: #E65100; font-weight: bold; font-size: 14pt;">&times;</div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 7.5pt; color: #1A6BBA;">El Conjugado</span><br>
+                        $\frac{\sqrt{x} - \sqrt{y}}{\sqrt{x} - \sqrt{y}}$
+                    </div>
+                    <div style="color: #2E7D32; font-weight: bold; font-size: 14pt;">=</div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 7.5pt; color: #2E7D32;">Resultado Final</span><br>
+                        $\frac{3(\sqrt{x} - \sqrt{y})}{x - y}$
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-section">
+                <div class="strategy-title-banner" style="background: linear-gradient(135deg, #1A6BBA, #0D47A1);">
+                    📐 EXTRACCIÓN PARCIAL DE RAÍCES ALGEBRAICAS
+                </div>
+                <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 12px; padding: 6px 10px; align-items: center;">
+                    <div>
+                        <p style="font-size: 8pt; line-height: 1.3; margin: 0 0 4px 0;">A menudo, el exponente de la variable no es múltiplo exacto del índice. ¿Qué hacemos?</p>
+                        <ul style="font-size: 7.5pt; line-height: 1.3; margin: 0; padding-left: 12px; color: #333;">
+                            <li><strong>Separamos:</strong> Dividimos el exponente de la variable en una suma: el mayor múltiplo del índice + el residuo.</li>
+                            <li><strong>Extraemos:</strong> La parte múltiplo sale de la raíz (dividiendo su exponente entre el índice).</li>
+                            <li><strong>Se queda:</strong> El residuo permanece dentro del radical.</li>
+                        </ul>
+                        <p style="font-size: 7.5pt; line-height: 1.3; margin: 4px 0 0 0; color: #1A6BBA; font-weight: bold;">Ejemplo: $\sqrt{x^5} = \sqrt{x^4 \cdot x^1} = x^2\sqrt{x}$</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <!-- SVG graphic representing partial extraction -->
+                        <div style="background: white; border: 1.5px solid #b2ebf2; border-radius: 8px; padding: 6px; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
+                        <svg viewBox="0 0 160 85" width="100%">
+                            <!-- Radical 1: sqrt(x^7) -->
+                            <path d="M 12 41 L 15 41 L 18 47 L 23 27 L 46 27" stroke="#333" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <text x="25" y="44" font-family="'Fredoka', sans-serif" font-size="14" fill="#E65100" font-weight="bold">x<tspan dy="-4" font-size="9">7</tspan></text>
+                            
+                            <!-- Arrow 1 (Right): -->
+                            <path d="M 52 38 L 68 38" stroke="#1A6BBA" stroke-width="1.8" fill="none" stroke-linecap="round" />
+                            <polygon points="66,35 71,38 66,41" fill="#1A6BBA" />
+                            
+                            <!-- Radical 2: sqrt(x^6 . x^1) -->
+                            <path d="M 76 41 L 79 41 L 82 47 L 87 27 L 132 27" stroke="#333" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <text x="89" y="44" font-family="'Fredoka', sans-serif" font-size="12" fill="#2E7D32" font-weight="bold">x<tspan dy="-3" font-size="8">6</tspan></text>
+                            <text x="105" y="44" font-family="'Fredoka', sans-serif" font-size="12" fill="#333" font-weight="bold">&middot;</text>
+                            <text x="113" y="44" font-family="'Fredoka', sans-serif" font-size="12" fill="#C2185B" font-weight="bold">x<tspan dy="-3" font-size="8">1</tspan></text>
+                            
+                            <!-- Arrow 2 (Down): -->
+                            <path d="M 104 52 L 104 63" stroke="#1A6BBA" stroke-width="1.8" fill="none" stroke-linecap="round" />
+                            <polygon points="101,61 104,66 107,61" fill="#1A6BBA" />
+                            
+                            <!-- Result: x^3 sqrt(x) -->
+                            <text x="76" y="79" font-family="'Fredoka', sans-serif" font-size="14" fill="#2E7D32" font-weight="bold">x<tspan dy="-4" font-size="9">3</tspan></text>
+                            <path d="M 94 74 L 97 74 L 100 80 L 105 60 L 120 60" stroke="#333" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <text x="107" y="77" font-family="'Fredoka', sans-serif" font-size="12" fill="#C2185B" font-weight="bold"><tspan dy="2">x</tspan></text>
+                        </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footerchecklist -->
+        <div class="remember-footer">
+            <div class="remember-title-container">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0D47A1" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div class="remember-title">PARA RECORDAR</div>
+            </div>
+            <div class="remember-items-container">
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> El índice de la raíz pasa al denominador del exponente fraccionario.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Extraemos dividiendo el exponente interno entre el índice.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Racionalizar un binomio requiere multiplicar por su conjugado.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 4: TALLER RADICACIÓN ALGEBRAICA ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">4</div>
+        <div class="taller-header">
+            📝 TALLER 2: RADICACIÓN Y RACIONALIZACIÓN ALGEBRAICA
+        </div>
+        <div class="taller-container">
+            <div class="taller-item" style="display: block;">
+                <strong>1.</strong> <span class="taller-tag tag-calcular">Calcular</span> <strong>Simplifica al máximo los siguientes radicales algebraicos (asume variables positivas):</strong>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; margin-top: 8px; padding-left: 15px; font-size: 8.5pt;">
+                    <div><strong>a)</strong> $\sqrt{16x^4 y^8}$</div>
+                    <div><strong>b)</strong> $\sqrt[3]{-27a^6 b^9}$</div>
+                    <div><strong>c)</strong> $\sqrt{50x^5 y^3}$</div>
+                    <div><strong>d)</strong> $\sqrt[4]{32m^{10} n^5}$</div>
+                </div>
+            </div>
+            
+            <div class="taller-item" style="display: block;">
+                <strong>2.</strong> <span class="taller-tag tag-integrar">Integrar</span> <strong>Racionaliza las siguientes expresiones algebraicas:</strong>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; margin-top: 8px; padding-left: 15px; font-size: 8.5pt;">
+                    <div><strong>a)</strong> $\frac{4x}{\sqrt{y}}$</div>
+                    <div><strong>b)</strong> $\frac{5a}{\sqrt{2a}}$</div>
+                    <div><strong>c)</strong> $\frac{2}{\sqrt{x} - 1}$</div>
+                    <div><strong>d)</strong> $\frac{\sqrt{a} + \sqrt{b}}{\sqrt{a} - \sqrt{b}}$</div>
+                </div>
+            </div>
+
+            <div class="taller-item">
+                <strong>3.</strong> <span class="taller-tag tag-analizar">Analizar</span> Un estudiante intentó simplificar $\sqrt{x^2 + y^2}$ como $x + y$. Demuestra usando los valores $x=3$ e $y=4$ por qué este procedimiento es incorrecto.
+            </div>
+            <div class="taller-item">
+                <strong>4.</strong> <span class="taller-tag tag-deducir">Deducir</span> El período $T$ de un péndulo es proporcional a $\sqrt{\frac{L}{g}}$. Si la longitud $L$ se cuadruplica ($4L$), ¿qué le sucede algebraicamente al valor de $T$?
+            </div>
+            <div class="taller-item">
+                <strong>5.</strong> <span class="taller-tag tag-sintetizar">Sintetizar</span> Expresa como un solo radical algebraico simplificado: $\sqrt{x} \cdot \sqrt[3]{x}$.
+            </div>
+            
+            <!-- ICFES MULTIPLE CHOICE -->
+            <div class="taller-item-icfes">
+                <strong>6.</strong> <span class="taller-tag tag-icfes">ICFES</span> Al simplificar la expresión $\sqrt{72x^7 y^4}$, el resultado correcto es:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $6x^3 y^2 \sqrt{2x}$</div>
+                    <div class="icfes-opt">B) $36x^3 y^2 \sqrt{x}$</div>
+                    <div class="icfes-opt">C) $6x^4 y^2 \sqrt{2}$</div>
+                    <div class="icfes-opt">D) $6x^3 y^2$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>7.</strong> <span class="taller-tag tag-icfes">ICFES</span> La racionalización de la fracción $\frac{x}{x + \sqrt{y}}$ da como resultado:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $\frac{x^2 - x\sqrt{y}}{x^2 + y}$</div>
+                    <div class="icfes-opt">B) $\frac{x^2 - x\sqrt{y}}{x^2 - y}$</div>
+                    <div class="icfes-opt">C) $\frac{x^2 + x\sqrt{y}}{x^2 - y}$</div>
+                    <div class="icfes-opt">D) $\frac{1}{\sqrt{y}}$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>8.</strong> <span class="taller-tag tag-icfes">ICFES</span> La expresión $m^{\frac{3}{5}}$ es equivalente a:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $\sqrt[3]{m^5}$</div>
+                    <div class="icfes-opt">B) $\frac{3}{5}m$</div>
+                    <div class="icfes-opt">C) $\sqrt[5]{m^3}$</div>
+                    <div class="icfes-opt">D) $5\sqrt{m^3}$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 5: NÚMEROS COMPLEJOS ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">5</div>
+        
+        <div style="position: relative; width: 100%; text-align: center;">
+            <svg style="position: absolute; left: 8%; top: 3px; width: 22px; height: 22px; fill: #FBC02D;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg style="position: absolute; left: 5%; top: 22px; width: 14px; height: 14px; fill: #FBC02D; opacity: 0.7;"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <div class="main-title-banner">EL UNIVERSO DE LOS NÚMEROS COMPLEJOS (ℂ)</div>
+        </div>
+
+        <div class="page-content">
+            <!-- First Grid: Intro text, formula & terms -->
+            <div
+                style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; margin-bottom: 4px; align-items: start;">
+                <div>
+                    <p style="margin-bottom: 4px;">Durante siglos, los matemáticos afirmaron que raíces cuadradas de números negativos, como $\sqrt{-1}$, no existían. Sin embargo, resolver ecuaciones avanzadas obligó a crear una nueva dimensión numérica: la <span class="keyword">unidad imaginaria</span> ($i$).</p>
+
+                    <div class="yellow-dashed-box" style="padding: 6px 10px;">
+                        <div style="font-size: 11pt; font-weight: bold; margin: 2px 0;">$i = \sqrt{-1} \quad \implies \quad i^2 = -1$</div>
+                        <div style="font-size: 7.5pt; color: #555; font-weight: 600;">Esta es la base de todo el sistema de números complejos.</div>
+                    </div>
+                </div>
+
+                <div class="green-info-box" style="padding: 6px 10px;">
+                    <div class="green-info-title">FORMA BINÓMICA</div>
+                    <p style="margin: 0; font-size: 7.5pt; line-height: 1.3; color: #2E7D32;">
+                        Un <strong>número complejo ($z$)</strong> está formado por una parte real ($a$) y una parte imaginaria ($b$).
+                    </p>
+                    <div style="font-size: 11pt; font-weight: bold; text-align: center; margin: 4px 0; font-family: 'Fredoka', sans-serif;">$z = a + bi$</div>
+                    <p style="margin: 0; font-size: 7pt; color: #555; text-align: center;">donde $a, b \in \mathbb{R}$</p>
+                </div>
+            </div>
+
+            <!-- Operations -->
+            <p style="margin-bottom: 4px;">Las operaciones con números complejos son muy parecidas a sumar polinomios algebraicos. Agrupamos partes reales con reales y partes imaginarias con imaginarias.</p>
+
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 4px; align-items: start;">
+                <!-- Suma/Resta -->
+                <div class="pink-box" style="padding: 6px 8px;">
+                    <div style="font-size: 8.5pt; font-weight: bold; font-family: 'Fredoka', sans-serif; color: #C2185B;">Suma y Resta</div>
+                    <p style="margin: 2px 0; font-size: 7.5pt; line-height: 1.25; color: #880E4F;">Sumamos términos semejantes independientemente.</p>
+                    <div style="font-size: 8.5pt; font-weight: bold; text-align: center; margin-top: 4px; color: #333;">$(3 + 2i) + (1 - 4i) = (3+1) + (2-4)i$<br>$= 4 - 2i$</div>
+                </div>
+                
+                <!-- Multiplicacion -->
+                <div class="reallife-section" style="margin: 0; padding: 6px 8px; border-left: 3px solid #1A6BBA; background: #E3F2FD; box-shadow: none;">
+                    <div style="font-size: 8.5pt; font-weight: bold; font-family: 'Fredoka', sans-serif; color: #0D47A1;">Multiplicación y $i^2$</div>
+                    <p style="margin: 2px 0; font-size: 7.5pt; line-height: 1.25; color: #1565C0;">Hacemos distributiva y cambiamos $i^2$ por $-1$.</p>
+                    <div style="font-size: 8.5pt; font-weight: bold; text-align: center; margin-top: 4px; color: #333;">$(2i)(4i) = 8i^2 = 8(-1) = -8$</div>
+                </div>
+            </div>
+
+            <!-- Plane Argand -->
+            <div class="strategy-section">
+                <div class="strategy-title-banner" style="background: linear-gradient(135deg, #1A6BBA, #0D47A1);">
+                    📐 EL PLANO COMPLEJO (PLANO DE ARGAND)
+                </div>
+                <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 12px; padding: 6px 10px; align-items: center;">
+                    <div>
+                        <p style="font-size: 8pt; line-height: 1.3; margin: 0 0 4px 0;">Los números complejos no caben en la recta numérica de los reales. Necesitamos dos dimensiones:</p>
+                        <ul style="font-size: 7.5pt; line-height: 1.3; margin: 0; padding-left: 12px; color: #333;">
+                            <li><strong>Eje Horizontal (Eje Real - Re):</strong> Ubicamos la parte $a$.</li>
+                            <li><strong>Eje Vertical (Eje Imaginario - Im):</strong> Ubicamos la parte $b$.</li>
+                            <li><strong>El Vector:</strong> Cada número complejo se puede representar como un vector o punto $(a, b)$ en este plano.</li>
+                        </ul>
+                        <div class="yellow-dashed-box" style="margin-top: 6px; padding: 4px; font-size: 7.5pt;">
+                            <strong>Conjugado ($\bar{z}$):</strong> Es el mismo número complejo pero con el signo de la parte imaginaria cambiado. Gráficamente, es el reflejo respecto al eje Real. Si $z = a+bi$, $\bar{z} = a-bi$.
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <!-- SVG graphic representing complex plane -->
+                        <div style="background: white; border: 1.5px solid #b2ebf2; border-radius: 8px; padding: 6px; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
+                        <svg viewBox="0 0 160 140" width="100%">
+                            <!-- Grid -->
+                            <line x1="20" y1="35" x2="140" y2="35" stroke="#eee" />
+                            <line x1="20" y1="105" x2="140" y2="105" stroke="#eee" />
+                            <line x1="115" y1="10" x2="115" y2="130" stroke="#eee" />
+                            
+                            <!-- Axes -->
+                            <!-- Re (x) -->
+                            <line x1="10" y1="70" x2="150" y2="70" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)" />
+                            <text x="145" y="65" font-family="'Fredoka', sans-serif" font-size="8" fill="#333">Re</text>
+                            
+                            <!-- Im (y) -->
+                            <line x1="80" y1="130" x2="80" y2="10" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)" />
+                            <text x="85" y="15" font-family="'Fredoka', sans-serif" font-size="8" fill="#333">Im(i)</text>
+                            
+                            <!-- Origin -->
+                            <text x="70" y="82" font-family="'Fredoka', sans-serif" font-size="8" fill="#333">0</text>
+                            
+                            <!-- Vector z = 3 + 2i -->
+                            <line x1="80" y1="70" x2="115" y2="35" stroke="#1A6BBA" stroke-width="2" marker-end="url(#arrowBlue)" />
+                            <circle cx="115" cy="35" r="3" fill="#1A6BBA" />
+                            <text x="120" y="32" font-family="'Fredoka', sans-serif" font-size="9" font-weight="bold" fill="#1A6BBA">z = 3 + 2i</text>
+                            
+                            <!-- Projections for z -->
+                            <line x1="115" y1="70" x2="115" y2="35" stroke="#1A6BBA" stroke-dasharray="2 2" stroke-width="1" />
+                            <line x1="80" y1="35" x2="115" y2="35" stroke="#1A6BBA" stroke-dasharray="2 2" stroke-width="1" />
+                            <text x="115" y="82" font-family="'Fredoka', sans-serif" font-size="8" fill="#555">3</text>
+                            <text x="68" y="38" font-family="'Fredoka', sans-serif" font-size="8" fill="#555">2i</text>
+
+                            <!-- Vector conjugate = 3 - 2i -->
+                            <line x1="80" y1="70" x2="115" y2="105" stroke="#C2185B" stroke-width="2" stroke-dasharray="2 2" marker-end="url(#arrowPink)" />
+                            <circle cx="115" cy="105" r="3" fill="#C2185B" />
+                            <text x="120" y="112" font-family="'Fredoka', sans-serif" font-size="9" font-weight="bold" fill="#C2185B">z&textmacr; = 3 - 2i</text>
+                            
+                            <!-- Projections for conjugate -->
+                            <line x1="115" y1="70" x2="115" y2="105" stroke="#C2185B" stroke-dasharray="2 2" stroke-width="1" />
+                            <line x1="80" y1="105" x2="115" y2="105" stroke="#C2185B" stroke-dasharray="2 2" stroke-width="1" />
+                            <text x="65" y="108" font-family="'Fredoka', sans-serif" font-size="8" fill="#555">-2i</text>
+
+                            <!-- Markers -->
+                            <defs>
+                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+                                </marker>
+                                <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A6BBA" />
+                                </marker>
+                                <marker id="arrowPink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#C2185B" />
+                                </marker>
+                            </defs>
+                        </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footerchecklist -->
+        <div class="remember-footer">
+            <div class="remember-title-container">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0D47A1" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div class="remember-title">PARA RECORDAR</div>
+            </div>
+            <div class="remember-items-container">
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> La unidad imaginaria $i$ soluciona la raíz cuadrada de $-1$.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Se operan sumas como si $i$ fuera una variable algebraica ordinaria.</div>
+                <div class="remember-item"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4CAF50"
+                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> En la multiplicación, siempre que aparezca $i^2$, reemplázalo por $-1$.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 6: TALLER COMPLEJOS ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">6</div>
+        <div class="taller-header">
+            📝 TALLER 3: NÚMEROS COMPLEJOS
+        </div>
+        <div class="taller-container">
+            <div class="taller-item" style="display: block;">
+                <strong>1.</strong> <span class="taller-tag tag-calcular">Calcular</span> <strong>Realiza las siguientes sumas y restas de números complejos:</strong>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; margin-top: 8px; padding-left: 15px; font-size: 8.5pt;">
+                    <div><strong>a)</strong> $(4 + 3i) + (2 - 5i)$</div>
+                    <div><strong>b)</strong> $(-1 + 6i) - (3 + 2i)$</div>
+                    <div><strong>c)</strong> $(7 - i) - (-2 - i)$</div>
+                    <div><strong>d)</strong> $(5i) + (4 - 3i)$</div>
+                </div>
+            </div>
+            
+            <div class="taller-item" style="display: block;">
+                <strong>2.</strong> <span class="taller-tag tag-integrar">Integrar</span> <strong>Calcula los siguientes productos, recordando que $i^2 = -1$:</strong>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; margin-top: 8px; padding-left: 15px; font-size: 8.5pt;">
+                    <div><strong>a)</strong> $(2 + i)(3 + 4i)$</div>
+                    <div><strong>b)</strong> $(1 - 2i)(1 + 2i)$</div>
+                    <div><strong>c)</strong> $4i(-3 + 2i)$</div>
+                    <div><strong>d)</strong> $(5 - i)^2$</div>
+                </div>
+            </div>
+
+            <div class="taller-item">
+                <strong>3.</strong> <span class="taller-tag tag-construir">Construir</span> Dibuja un plano complejo e ubica los siguientes números: $z_1 = -3 + 2i$, $z_2 = 4i$, y $z_3 = 2 - i$.
+            </div>
+            <div class="taller-item">
+                <strong>4.</strong> <span class="taller-tag tag-analizar">Analizar</span> ¿Qué resultado obtienes al multiplicar un número complejo $z = a + bi$ por su conjugado $\bar{z} = a - bi$? Demuestra algebraicamente que el resultado es siempre un número real.
+            </div>
+            <div class="taller-item">
+                <strong>5.</strong> <span class="taller-tag tag-deducir">Deducir</span> Si $i^1 = i$, $i^2 = -1$, $i^3 = -i$, e $i^4 = 1$. Deduce el valor de la potencia $i^{20}$.
+            </div>
+            
+            <!-- ICFES MULTIPLE CHOICE -->
+            <div class="taller-item-icfes">
+                <strong>6.</strong> <span class="taller-tag tag-icfes">ICFES</span> El resultado de restar $(5 - 3i) - (2 + 4i)$ es:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $3 + i$</div>
+                    <div class="icfes-opt">B) $3 - 7i$</div>
+                    <div class="icfes-opt">C) $7 - 7i$</div>
+                    <div class="icfes-opt">D) $3 + 7i$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>7.</strong> <span class="taller-tag tag-icfes">ICFES</span> La expresión simplificada de $\sqrt{-16}$ utilizando números complejos es:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) $-4$</div>
+                    <div class="icfes-opt">B) $4$</div>
+                    <div class="icfes-opt">C) $4i$</div>
+                    <div class="icfes-opt">D) $-4i$</div>
+                </div>
+            </div>
+            <div class="taller-item-icfes">
+                <strong>8.</strong> <span class="taller-tag tag-icfes">ICFES</span> Al ubicar el número complejo $z = -2 - 5i$ en el plano de Argand, este se encuentra en el:
+                <div class="icfes-options">
+                    <div class="icfes-opt">A) Cuadrante I</div>
+                    <div class="icfes-opt">B) Cuadrante II</div>
+                    <div class="icfes-opt">C) Cuadrante III</div>
+                    <div class="icfes-opt">D) Cuadrante IV</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 7: RESUMEN DEL CAPÍTULO ================= -->
+    <div class="page">
+        <div class="page-sidebar">MATEMÁTICAS</div>
+        <div class="page-brand">INAS</div>
+        <div class="page-number">7</div>
+        
+        <div style="position: relative; width: 100%; text-align: center;">
+            <svg style="position: absolute; left: 8%; top: 3px; width: 22px; height: 22px; fill: #FBC02D;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg style="position: absolute; left: 5%; top: 22px; width: 14px; height: 14px; fill: #FBC02D; opacity: 0.7;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <div class="main-title-banner">RESEÑA CRÍTICA DEL CAPÍTULO</div>
+        </div>
+
+        <div class="page-content" style="justify-content: flex-start; gap: 12px;">
+            <div class="green-info-box" style="padding: 10px 15px; margin-bottom: 8px;">
+                <div class="green-info-title" style="font-size: 11pt; text-align: left;">📌 DATOS DE LA OBRA</div>
+                <p style="margin: 0; font-size: 8.5pt; color: #2E7D32;"><strong>Tema:</strong> Matemáticas Noveno: Álgebra Avanzada y Números Complejos.<br><strong>Función Textual:</strong> Expositiva-Argumentativa (Reseña).</p>
+            </div>
+
+            <div class="yellow-dashed-box" style="padding: 12px; margin-bottom: 8px;">
+                <span style="font-weight: bold; color: #E65100; font-size: 9.5pt; display: block; margin-bottom: 4px;">📖 SÍNTESIS DEL CONTENIDO</span>
+                <p style="margin: 0; font-size: 9pt; line-height: 1.4; color: #5c3b00;">
+                    Este capítulo establece los pilares del álgebra superior. Comienza demostrando cómo las leyes de los exponentes y radicales no se limitan a números, sino que operan sobre variables para modelar fenómenos complejos. Posteriormente, el texto da un salto paradigmático al introducir la unidad imaginaria ($i$), resolviendo el límite histórico de las raíces cuadradas negativas y abriendo el universo de los números complejos en el plano bidimensional de Argand.
+                </p>
+            </div>
+
+            <div class="blue-banner-title" style="margin-bottom: 4px; font-size: 9pt;">💡 COMENTARIO CRÍTICO Y VALORACIÓN</div>
+            
+            <div style="background: white; border-left: 4px solid #1A6BBA; padding: 10px 12px; border-radius: 4px; box-shadow: 1px 1px 4px rgba(0,0,0,0.05); margin-bottom: 12px;">
+                <p style="margin: 0; font-size: 8.5pt; line-height: 1.4; color: #333;">
+                    El enfoque pedagógico adoptado en esta guía es sumamente acertado. Al vincular operaciones abstractas (como elevar $x^2$ al cubo) con representaciones geométricas palpables, se desmitifica la complejidad algebraica. Sin embargo, su verdadero valor radica en la transición fluida hacia los números complejos: en lugar de presentarlos como una simple curiosidad matemática, se exponen como una necesidad lógica indispensable para avanzar en ciencias aplicadas.
+                </p>
+            </div>
+
+            <div class="pink-box" style="padding: 10px; text-align: left;">
+                <span style="font-weight: bold; color: #C2185B; font-size: 9pt; display: block; margin-bottom: 3px; font-family: 'Fredoka', sans-serif;">✅ CONCLUSIÓN Y RECOMENDACIÓN</span>
+                <p style="margin: 0; font-size: 8.5pt; line-height: 1.4; color: #880E4F;">
+                    En conclusión, este módulo es una herramienta de transición obligatoria. Resulta altamente recomendable para estudiantes que aspiran a carreras STEM (Ciencia, Tecnología, Ingeniería y Matemáticas), ya que la fluidez adquirida aquí con expresiones algebraicas y fasores complejos será la columna vertebral del cálculo y la física de grados superiores.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
