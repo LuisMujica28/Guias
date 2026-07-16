@@ -1419,7 +1419,7 @@
                             <div style="display: flex; align-items: center; gap: 6px;">
                                 <div class="ex-num" style="font-size: 8.5pt;">2</div>
                                 <div class="ex-audio-icon" style="cursor: pointer;">
-                                    <a href="https://cdn.jsdelivr.net/gh/LuisMujica28/Guias@main/Ingl%C3%A9s/Audio%201.mp3" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 3px;">
+                                    <a href="https://cdn.jsdelivr.net/gh/LuisMujica28/Guias@main/Ingl%C3%A9s/Audio%201.mp3" target="_blank" onclick="playAudioInline(event, 'https://cdn.jsdelivr.net/gh/LuisMujica28/Guias@main/Ingl%C3%A9s/Audio%201.mp3')" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 3px;">
                                         🔊 <span style="text-decoration: underline;">Listen</span>
                                     </a>
                                 </div>
@@ -1977,5 +1977,29 @@
     
         </div>
     
+        <script>
+            let activeAudio = null;
+            let activeUrl = null;
+            function playAudioInline(event, url) {
+                if (typeof window !== 'undefined' && window.location && (window.location.protocol.startsWith('http') || window.location.protocol === 'file:')) {
+                    event.preventDefault(); // Prevent opening new tab
+                    if (activeAudio && activeUrl === url) {
+                        if (!activeAudio.paused) {
+                            activeAudio.pause();
+                            return;
+                        } else {
+                            activeAudio.play().catch(e => console.log(e));
+                            return;
+                        }
+                    }
+                    if (activeAudio) {
+                        activeAudio.pause();
+                    }
+                    activeAudio = new Audio(url);
+                    activeUrl = url;
+                    activeAudio.play().catch(e => console.log(e));
+                }
+            }
+        </script>
     </body>
 </html>
