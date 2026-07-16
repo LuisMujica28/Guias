@@ -950,6 +950,15 @@
             margin: 0;
             font-size: 8pt;
             line-height: 1.45;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .blog-text-content p.p-highlight {
+            background-color: #ffe082 !important;
+            transform: scale(1.01);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         /* --- 10. Welcome Page Styles --- */
@@ -2005,22 +2014,51 @@
                         if (activeHighlight) {
                             activeHighlight.classList.remove('playing-highlight');
                         }
+                        const paragraphs = document.querySelectorAll('.blog-text-content p');
+                        paragraphs.forEach(p => p.classList.remove('p-highlight'));
                     }
                     activeAudio = new Audio(url);
                     activeUrl = url;
+                    
+                    const paragraphs = document.querySelectorAll('.blog-text-content p');
                     
                     activeAudio.addEventListener('play', () => {
                         const card = document.querySelector('.blog-card');
                         if (card) card.classList.add('playing-highlight');
                     });
-                    activeAudio.addEventListener('pause', () => {
+                    
+                    activeAudio.addEventListener('timeupdate', () => {
+                        const time = activeAudio.currentTime;
+                        let activeIdx = -1;
+                        if (time >= 0 && time < 14.5) {
+                            activeIdx = 0;
+                        } else if (time >= 14.5 && time < 39.5) {
+                            activeIdx = 1;
+                        } else if (time >= 39.5 && time < 54.5) {
+                            activeIdx = 2;
+                        } else if (time >= 54.5 && time < 67.5) {
+                            activeIdx = 3;
+                        } else if (time >= 67.5) {
+                            activeIdx = 4;
+                        }
+                        
+                        paragraphs.forEach((p, idx) => {
+                            if (idx === activeIdx) {
+                                p.classList.add('p-highlight');
+                            } else {
+                                p.classList.remove('p-highlight');
+                            }
+                        });
+                    });
+                    
+                    const clearHighlights = () => {
                         const card = document.querySelector('.blog-card');
                         if (card) card.classList.remove('playing-highlight');
-                    });
-                    activeAudio.addEventListener('ended', () => {
-                        const card = document.querySelector('.blog-card');
-                        if (card) card.classList.remove('playing-highlight');
-                    });
+                        paragraphs.forEach(p => p.classList.remove('p-highlight'));
+                    };
+                    
+                    activeAudio.addEventListener('pause', clearHighlights);
+                    activeAudio.addEventListener('ended', clearHighlights);
                     
                     activeAudio.play().catch(e => console.log(e));
                 }
